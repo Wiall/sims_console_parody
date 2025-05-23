@@ -9,7 +9,7 @@ public class UtilityBuilder
 {
     private readonly Utility _utility = new Utility();
 
-    public UtilityBuilder SetType(string type)
+    public UtilityBuilder SetType(UtilityType type)
     {
         _utility.Type = type;
         return this;
