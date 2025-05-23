@@ -11,7 +11,8 @@ internal static class Program
     {
         Console.OutputEncoding = Encoding.UTF8;
         Console.WriteLine("Hello, repo!");
-        
+
+        // === Створення будівель, доріг, інфраструктури ===
         var school = new BuildingBuilder()
             .SetType(BuildingType.School)
             .SetFloors(3)
@@ -22,6 +23,7 @@ internal static class Program
 
         var road = new RoadBuilder()
             .SetLanes(2)
+            .SetType(RoadType.TransitOnly)
             .SetLights(true)
             .SetArea(2)
             .SetMaintenanceCost(500)
@@ -34,45 +36,61 @@ internal static class Program
             .SetMaintenanceCost(1000)
             .Build();
 
-        var centralDistrict = new DistrictComposite("Центральний");
-        centralDistrict.Add(school);
-        centralDistrict.Add(road);
-        centralDistrict.Add(utility);
-        var residentialDistrict = new DistrictComposite("Житловий");
-        residentialDistrict.Add(new BuildingBuilder()
+        // === Центральний квартал ===
+        var centralQuarter = new QuarterComposite("Центральний квартал");
+        centralQuarter.AddComponent(school);
+        centralQuarter.AddComponent(road);
+        centralQuarter.AddComponent(utility);
+
+        // === Житловий квартал ===
+        var residentialQuarter = new QuarterComposite("Житловий квартал");
+        residentialQuarter.AddComponent(new BuildingBuilder()
             .SetType(BuildingType.Apartment)
             .SetFloors(5)
             .SetCapacity(100)
             .SetArea(6)
             .SetMaintenance(2000)
             .Build());
-        residentialDistrict.Add(new RoadBuilder()
+        residentialQuarter.AddComponent(new RoadBuilder()
             .SetLanes(1)
             .SetLights(false)
             .SetArea(2)
             .SetMaintenanceCost(300)
             .Build());
 
-        var industrialDistrict = new DistrictComposite("Промисловий");
-        industrialDistrict.Add(new UtilityBuilder()
+        // === Промисловий квартал ===
+        var industrialQuarter = new QuarterComposite("Промисловий квартал");
+        industrialQuarter.AddComponent(new UtilityBuilder()
             .SetType(UtilityType.PowerPlant)
             .SetProductionCapacity(50000)
             .SetArea(10)
             .SetMaintenanceCost(5000)
             .Build());
-        industrialDistrict.Add(new RoadBuilder()
+        industrialQuarter.AddComponent(new RoadBuilder()
             .SetLanes(3)
             .SetLights(true)
             .SetArea(4)
             .SetMaintenanceCost(800)
             .Build());
 
-        var city = new CityComposite("Симулянськ");
-        city.Add(centralDistrict);
-        city.Add(industrialDistrict);
-        city.Display();
-        Console.WriteLine($"Загальна вартість утримання: {city.GetMaintenanceCost()}");
-        Console.WriteLine($"Загальна площа: {city.GetTotalArea()}");
+        // === Райони ===
+        var centralDistrict = new DistrictComposite("Центральний район");
+        centralDistrict.AddQuarter(centralQuarter);
 
+        var residentialDistrict = new DistrictComposite("Житловий район");
+        residentialDistrict.AddQuarter(residentialQuarter);
+
+        var industrialDistrict = new DistrictComposite("Промисловий район");
+        industrialDistrict.AddQuarter(industrialQuarter);
+
+        // === Місто ===
+        var city = new CityComposite("Симулянськ");
+        city.AddDistrict(centralDistrict);
+        city.AddDistrict(residentialDistrict);
+        city.AddDistrict(industrialDistrict);
+
+        city.Display();
+        Console.WriteLine($"\nЗагальна вартість утримання: {city.GetMaintenanceCost()}");
+        Console.WriteLine($"Загальна площа: {city.GetTotalArea()}");
     }
 }

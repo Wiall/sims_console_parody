@@ -1,57 +1,31 @@
-using System;
-using System.Collections.Generic;
 using dot_net_lab_4_sims_parody.Builders;
-namespace dot_net_lab_4_sims_parody.Composite;
 
-/// <summary>
-/// Composite class representing a city district
-/// </summary>
-public class DistrictComposite : ICityComponent
+public class DistrictComposite(string name) : ICityComponent
 {
-    public string Name { get; set; }
-    private readonly List<ICityComponent> _components = new();
+    public string Name { get; set; } = name;
+    private readonly List<IInfrastructureComponent> _quarters = new();
 
-    public DistrictComposite(string name)
-    {
-        Name = name;
-    }
+    public void AddQuarter(IInfrastructureComponent quarter) => _quarters.Add(quarter);
+    public void RemoveQuarter(IInfrastructureComponent quarter) => _quarters.Remove(quarter);
 
-    public void Add(ICityComponent component)
-    {
-        _components.Add(component);
-    }
-
-    public void Remove(ICityComponent component)
-    {
-        _components.Remove(component);
-    }
-
-    public void Display(int depth = 0)
-    {
-        Console.WriteLine(new string('-', depth) + $" District: {Name}");
-        foreach (var component in _components)
-        {
-            component.Display(depth + 2);
-        }
-    }
-
-    public decimal GetMaintenanceCost()
-    {
-        decimal total = 0;
-        foreach (var component in _components)
-        {
-            total += component.GetMaintenanceCost();
-        }
-        return total;
-    }
+    public decimal GetMaintenanceCost() =>
+        _quarters.Sum(q => q.GetMaintenanceCost());
 
     public int GetTotalArea()
     {
         int total = 0;
-        foreach (var component in _components)
+        foreach (var quarter in _quarters)
         {
-            total += component.GetTotalArea();
+            total += quarter.Area;
         }
+
         return total;
+    }
+
+    public void Display(int indent = 0)
+    {
+        Console.WriteLine($"{new string(' ', indent)}+ District: {Name}");
+        foreach (var quarter in _quarters)
+            quarter.Display(indent + 2);
     }
 }

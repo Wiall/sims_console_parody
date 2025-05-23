@@ -2,8 +2,9 @@ using dot_net_lab_4_sims_parody.Builders;
 
 namespace dot_net_lab_4_sims_parody.Models;
 
-public class Utility : ICityComponent
+public class Utility : IInfrastructureComponent
 {
+    public string Name => $"{Type} Utility";
     public UtilityType Type { get; set; }            // Тип, наприклад: "PowerPlant", "WaterTower"
     public double ProductionCapacity { get; set; } = 0;      // Обсяг, який виробляється
     public decimal ConstructionCost { get; set; }            // Вартість будівництва
@@ -12,7 +13,7 @@ public class Utility : ICityComponent
     
     public void Display(int depth = 0)
     {
-        Console.WriteLine(new string('-', depth) + $" Infrastructure: {Type}, Capacity: {ProductionCapacity}");
+        Console.WriteLine(new string(' ', depth) + $"- Infrastructure: {Type}, Capacity: {ProductionCapacity}");
     }
 
     public decimal GetMaintenanceCost() => MaintenanceCost;
