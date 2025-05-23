@@ -1,0 +1,15 @@
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\bin\Debug\net8.0\dot_net_lab_4_sims_parody.exe
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\bin\Debug\net8.0\dot_net_lab_4_sims_parody.deps.json
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\bin\Debug\net8.0\dot_net_lab_4_sims_parody.runtimeconfig.json
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\bin\Debug\net8.0\dot_net_lab_4_sims_parody.dll
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\bin\Debug\net8.0\dot_net_lab_4_sims_parody.pdb
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\obj\Debug\net8.0\dot_net_lab_4_sims_parody.GeneratedMSBuildEditorConfig.editorconfig
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\obj\Debug\net8.0\dot_net_lab_4_sims_parody.AssemblyInfoInputs.cache
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\obj\Debug\net8.0\dot_net_lab_4_sims_parody.AssemblyInfo.cs
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\obj\Debug\net8.0\dot_net_lab_4_sims_parody.csproj.CoreCompileInputs.cache
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\obj\Debug\net8.0\dot_net_lab_4_sims_parody.sourcelink.json
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\obj\Debug\net8.0\dot_net_lab_4_sims_parody.dll
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\obj\Debug\net8.0\refint\dot_net_lab_4_sims_parody.dll
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\obj\Debug\net8.0\dot_net_lab_4_sims_parody.pdb
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\obj\Debug\net8.0\dot_net_lab_4_sims_parody.genruntimeconfig.cache
+D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\obj\Debug\net8.0\ref\dot_net_lab_4_sims_parody.dll

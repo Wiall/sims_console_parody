@@ -14,6 +14,12 @@ public class RoadBuilder
         _road.Area = area;
         return this;
     }
+    
+    public RoadBuilder SetType(RoadType type)
+    {
+        _road.Type = type;
+        return this;
+    }
 
     public RoadBuilder SetLights(bool hasLights)
     {

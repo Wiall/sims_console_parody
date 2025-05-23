@@ -5,8 +5,9 @@ namespace dot_net_lab_4_sims_parody.Models;
 /// <summary>
 /// Building model class
 /// </summary>
-public class Building : ICityComponent
+public class Building : IInfrastructureComponent
 {
+    public string Name => $"{Type} Building";
     public BuildingType Type { get; set; }                  // Тип будівлі по типу "Школа" чи "Офіс"
     public int Floors { get; set; } = 1;                            // Кількість поверхів
     public int Capacity { get; set; }                               // Місткість будівлі (люди)
@@ -28,7 +29,7 @@ public class Building : ICityComponent
     }
     public void Display(int depth = 0)
     {
-        Console.WriteLine(new string('-', depth) + $" Building: {Type}, Floors: {Floors}, Income: {Income}");
+        Console.WriteLine(new string(' ', depth) + $"- Building: {Type}, Floors: {Floors}, Income: {Income}");
     }
 
     public decimal GetMaintenanceCost() => MaintenanceCost;
