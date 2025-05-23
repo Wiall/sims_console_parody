@@ -9,7 +9,7 @@ public class BuildingBuilder
 {
     private readonly Building _building = new Building();
 
-    public BuildingBuilder SetType(string type)
+    public BuildingBuilder SetType(BuildingType type)
     {
         _building.Type = type;
         return this;
