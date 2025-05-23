@@ -1,4 +1,4 @@
-namespace dot_net_lab_4_sims_parody.Builders;
+namespace dot_net_lab_4_sims_parody.Interfaces;
 
 public interface ICityComponent
 {

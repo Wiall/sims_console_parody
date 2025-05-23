@@ -1,4 +1,4 @@
-using dot_net_lab_4_sims_parody.Builders;
+using dot_net_lab_4_sims_parody.Interfaces;
 
 public class DistrictComposite(string name) : ICityComponent
 {
