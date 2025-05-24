@@ -4,6 +4,11 @@ using Domain.Composite;
 namespace Application.Services;
 public class QuarterService : IQuarterService
 {
+    public QuarterComposite Create(string name)
+    {
+        return new QuarterComposite(name);
+    }
+
     public void Add(DistrictComposite district, QuarterComposite quarter)
     {
         district.AddQuarter(quarter);

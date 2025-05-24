@@ -20,34 +20,54 @@ internal static class Program
         // ПРОТИ DI - у нас є білдер, через що всі ці сервіси і DI не потрібні, бо білдер і так ізолює шари
         // якщо прибирати DI, то треба сюди перенести dto-шки (або якось обійти їх при роботі з юзером)
         // і Validation, який треба буде теж викликати при роботі з юзером, там все ясно
+        //
+        // Я ще більше перестаю любити Application Layer тому
+        // ІНСТРУКЦІЯ ЯК ПРИБРАТИ APPLICATION
+        // Берете BuilderExtensions, Dtos, Validation, переносите в цей проект (не забудьте поміняти їм неймспейси
+        // Прибираєте мій код, розкоменчуєте свій
+        // Замість того, щоб юзати Builder тепер можете збирати поля в Dto-шку і кликати ApplyDto
+        // Наприклад:
+        // Було:
+        // var school = new BuildingBuilder()
+        //     .SetType(BuildingType.School)
+        //     .SetFloors(3)
+        //     .SetCapacity(500)
+        //     .SetArea(4)
+        //     .SetMaintenance(3000)
+        //     .Build();
+        // Стало:
+        // new BuildingDto()
+        // {
+        //     Type = BuildingType.School,
+        //     Floors = 3,
+        //     Capacity = 500,
+        //     Area = 400,
+        //     MaintenanceCost = 3000,
+        // }
+        //
+        // var school = new BuildingBuilder()
+        //    .ApplyDto(dto)
+        //    .Build();
+        //
+        // Не забувайте про валідації
+
+        // Оце акшуаллі мій патерн кста, ги)
         var serviceExceptionHandler = new ServiceExceptionHandler();
         var outOfRangeExceptionHandler = new OutOfRangeExceptionHandler();
         var genericExceptionHandler = new GenericExceptionHandler();
 
         serviceExceptionHandler.SetNext(outOfRangeExceptionHandler);
         outOfRangeExceptionHandler.SetNext(genericExceptionHandler);
-
-        var serviceCollection = new ServiceCollection();
-
-        ConfigureServices(serviceCollection);
-
-        var serviceProvider = serviceCollection.BuildServiceProvider();
-
-        Console.OutputEncoding = Encoding.UTF8;
-        Console.WriteLine("Hello, repo!");
-
-        // Оце акшуаллі мій патерн кста, ги)
         try
         {
-            var centralQuarter = new QuarterComposite("Центральний квартал");
-            var residentialQuarter = new QuarterComposite("Житловий квартал");
-            var industrialQuarter = new QuarterComposite("Промисловий квартал");
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.WriteLine("Hello, repo!");
 
-            var centralDistrict = new DistrictComposite("Центральний район");
-            var residentialDistrict = new DistrictComposite("Житловий район");
-            var industrialDistrict = new DistrictComposite("Промисловий район");
+            var serviceCollection = new ServiceCollection();
 
-            var city = new CityComposite("Симулянськ");
+            ConfigureServices(serviceCollection);
+
+            var serviceProvider = serviceCollection.BuildServiceProvider();
 
             var buildingService = serviceProvider.GetRequiredService<IBuildingService>();
             var roadService = serviceProvider.GetRequiredService<IRoadService>();
@@ -55,76 +75,87 @@ internal static class Program
             var quarterService = serviceProvider.GetRequiredService<IQuarterService>();
             var districtService = serviceProvider.GetRequiredService<IDistrictService>();
 
-            var school = new BuildingDto()
+            var centralQuarter = quarterService.Create("Центральний квартал");
+            var residentialQuarter = quarterService.Create("Житловий квартал");
+            var industrialQuarter = quarterService.Create("Промисловий квартал");
+
+            var centralDistrict = districtService.Create("Центральний район");
+            var residentialDistrict = districtService.Create("Житловий район");
+            var industrialDistrict = districtService.Create("Промисловий район");
+
+            // CityService це дурна ідея, тому буде отак
+            var city = new CityComposite("Симулянськ");
+
+            var school = buildingService.Create(new BuildingDto()
             {
                 Type = BuildingType.School,
                 Floors = 3,
                 Capacity = 500,
                 Area = 400,
                 MaintenanceCost = 3000,
-            };
+            });
 
-            var road = new RoadDto()
+            var road = roadService.Create(new RoadDto()
             {
                 Type = RoadType.TransitOnly,
                 Lanes = 2,
                 HasLights = true,
                 Area = 2,
                 MaintenanceCost = 3000,
-            };
+            });
 
-            var utility = new UtilityDto()
+            var utility = utilityService.Create(new UtilityDto()
             {
                 Type = UtilityType.WaterTower,
                 ProductionCapacity = 20000,
                 Area = 3,
                 MaintenanceCost = 1000,
-            };
+            });
 
-            buildingService.Add(centralQuarter, school);
-            roadService.Add(centralQuarter, road);
-            utilityService.Add(centralQuarter, utility);
+            buildingService.AddToQuarter(centralQuarter, school);
+            roadService.AddToQuarter(centralQuarter, road);
+            utilityService.AddToQuarter(centralQuarter, utility);
 
-            buildingService.Add(residentialQuarter, new BuildingDto()
+            buildingService.AddToQuarter(residentialQuarter, buildingService.Create(new BuildingDto()
             {
                 Type = BuildingType.Apartment,
                 Floors = 5,
                 Capacity = 100,
                 Area = 6,
                 MaintenanceCost = 2000
-            });
-            roadService.Add(residentialQuarter, new RoadDto()
+            }));
+            roadService.AddToQuarter(residentialQuarter, roadService.Create(new RoadDto()
             {
                 Lanes = 1,
                 HasLights = false,
                 Area = 2,
                 MaintenanceCost = 300,
-            });
+            }));
 
-            utilityService.Add(industrialQuarter, new UtilityDto()
+            utilityService.AddToQuarter(industrialQuarter, utilityService.Create(new UtilityDto()
             {
                 Type = UtilityType.PowerPlant,
                 ProductionCapacity = 50000,
                 Area = 10,
                 MaintenanceCost = 5000,
-            });
-            roadService.Add(industrialQuarter, new RoadDto()
+            }));
+            roadService.AddToQuarter(industrialQuarter, roadService.Create(new RoadDto()
             {
                 Lanes = 3,
                 HasLights = true,
                 Area = 4,
                 MaintenanceCost = 800,
-            });
+            }));
 
-            quarterService.Add(centralDistrict, centralQuarter);
-            quarterService.Add(residentialDistrict, residentialQuarter);
-            quarterService.Add(industrialDistrict, industrialQuarter);
+            quarterService.AddToDistrict(centralDistrict, centralQuarter);
+            quarterService.AddToDistrict(residentialDistrict, residentialQuarter);
+            quarterService.AddToDistrict(industrialDistrict, industrialQuarter);
 
-            districtService.Add(city, centralDistrict);
-            districtService.Add(city, residentialDistrict);
-            districtService.Add(city, industrialDistrict);
+            districtService.AddToCity(city, centralDistrict);
+            districtService.AddToCity(city, residentialDistrict);
+            districtService.AddToCity(city, industrialDistrict);
 
-            // Лишив старий код, якщо захочемо прибрати Application
+            // Лишив старий код
             /*
             // === Створення будівель, доріг, інфраструктури ===
             var school = new BuildingBuilder()
@@ -204,6 +235,7 @@ internal static class Program
             city.AddDistrict(industrialDistrict);
             */
 
+            // Оцю шнягу можна буде в City service
             city.Display();
             Console.WriteLine($"\nЗагальна вартість утримання: {city.GetMaintenanceCost()}");
             Console.WriteLine($"Загальна площа: {city.GetTotalArea()}");

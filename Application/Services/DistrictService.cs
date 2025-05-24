@@ -4,6 +4,11 @@ using Domain.Composite;
 namespace Application.Services;
 public class DistrictService : IDistrictService
 {
+    public DistrictComposite Creatre(string name)
+    {
+        return new DistrictComposite(name);
+    }
+
     public void Add(CityComposite city, DistrictComposite district)
     {
         city.AddDistrict(district);

@@ -3,9 +3,11 @@
 namespace Application.Interfaces;
 public interface IDistrictService
 {
-    void Add(CityComposite city, DistrictComposite district);
+    DistrictComposite Create(string name);
+
+    void AddToCity(CityComposite city, DistrictComposite district);
 
     void Update(CityComposite city, DistrictComposite district);
 
-    void Delete(CityComposite city, DistrictComposite district);
+    void DeleteFromCity(CityComposite city, DistrictComposite district);
 }
