@@ -1,6 +1,6 @@
-using dot_net_lab_4_sims_parody.Models;
+using Domain.Models;
 
-namespace dot_net_lab_4_sims_parody.Builders;
+namespace Domain.Builders;
 
 /// <summary>
 /// Builder for Utility class, used to create utilities

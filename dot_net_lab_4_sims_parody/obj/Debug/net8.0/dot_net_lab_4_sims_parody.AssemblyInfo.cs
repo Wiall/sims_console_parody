@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dot_net_lab_4_sims_parody")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+490871177117a64722cf7be6392e1c6b059a7d73")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c46028e63a168982e3cd77c5e821ad08d4cac55b")]
 [assembly: System.Reflection.AssemblyProductAttribute("dot_net_lab_4_sims_parody")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dot_net_lab_4_sims_parody")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
