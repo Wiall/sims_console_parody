@@ -1,7 +1,6 @@
-using dot_net_lab_4_sims_parody.Interfaces;
-using dot_net_lab_4_sims_parody.UIHolding;
+using Domain.Interfaces;
 
-namespace dot_net_lab_4_sims_parody.Composite;
+namespace Domain.Composite;
 
 /// <summary>
 /// Composite class representing a city as a set of districts
@@ -19,7 +18,6 @@ public class CityComposite(string name) : ICityComponent
 
     public void Display(int indent = 0)
     {
-        MenuUI.MakeHeader(Name);
         foreach (var district in _districts)
         {
             district.Display(indent + 2);

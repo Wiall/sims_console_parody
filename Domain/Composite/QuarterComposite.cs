@@ -1,6 +1,6 @@
-using dot_net_lab_4_sims_parody.Interfaces;
+using Domain.Interfaces;
 
-namespace dot_net_lab_4_sims_parody.Composite;
+namespace Domain.Composite;
 
 public class QuarterComposite(string name) : IInfrastructureComponent
 {

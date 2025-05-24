@@ -1,0 +1,22 @@
+﻿using Application.Interfaces;
+using Domain.Composite;
+
+namespace Application.Services;
+public class QuarterService : IQuarterService
+{
+    public void Add(DistrictComposite district, QuarterComposite quarter)
+    {
+        district.AddQuarter(quarter);
+    }
+
+    public void Delete(DistrictComposite district, QuarterComposite quarter)
+    {
+        district.RemoveQuarter(quarter);
+    }
+
+    public void Update(DistrictComposite district, QuarterComposite quarter)
+    {
+        throw new NotImplementedException();
+        // я нінаю як це рішать, може взагалі його прибрати
+    }
+}

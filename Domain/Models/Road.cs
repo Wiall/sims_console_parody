@@ -1,12 +1,12 @@
-using dot_net_lab_4_sims_parody.Interfaces;
+using Domain.Interfaces;
 
-namespace dot_net_lab_4_sims_parody.Models;
+namespace Domain.Models;
 
 public class Road : IInfrastructureComponent
 {
     public string Name => $"{Type} Road";
     public RoadType Type { get; set; }
-    public int Area { get; set; } = 1;                 // Площа(?) дороги
+    public int Area { get; set; } = 1;                 // Площа(?) дороги (можна юзать як довжину)
     public bool HasLights { get; set; }                // Чи є вуличне освітлення
     public decimal ConstructionCost { get; set; }      // Вартість будівництва
     public decimal MaintenanceCost { get; set; }       // Вартість утримання

@@ -1,4 +1,6 @@
-using dot_net_lab_4_sims_parody.Interfaces;
+using Domain.Interfaces;
+
+namespace Domain.Composite;
 
 public class DistrictComposite(string name) : ICityComponent
 {

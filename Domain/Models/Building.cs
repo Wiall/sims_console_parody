@@ -1,6 +1,6 @@
-using dot_net_lab_4_sims_parody.Interfaces;
+using Domain.Interfaces;
 
-namespace dot_net_lab_4_sims_parody.Models;
+namespace Domain.Models;
 
 /// <summary>
 /// Building model class
