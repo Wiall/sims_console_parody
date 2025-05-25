@@ -1,6 +1,6 @@
-using dot_net_lab_4_sims_parody.Models;
+using Domain.Models;
 
-namespace dot_net_lab_4_sims_parody.Builders;
+namespace Domain.Builders;
 
 /// <summary>
 /// Builder for Building class, used to create buildings
@@ -77,5 +77,4 @@ public class BuildingBuilder
     {
         return _building;
     }
-
 }

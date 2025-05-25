@@ -1,4 +1,4 @@
-namespace dot_net_lab_4_sims_parody.Models;
+namespace Domain.Models;
 
 /// <summary>
 /// Enumeration of all available building types in the city simulation.
