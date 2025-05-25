@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dot_net_lab_4_sims_parody")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b82ac9e52bf2194fd0000e33d41c9665f1cdd509")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a6b360ab29196e76da94366c96105e3b0e3da6b")]
 [assembly: System.Reflection.AssemblyProductAttribute("dot_net_lab_4_sims_parody")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dot_net_lab_4_sims_parody")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

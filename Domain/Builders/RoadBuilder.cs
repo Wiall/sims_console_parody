@@ -3,18 +3,18 @@ using Domain.Models;
 namespace Domain.Builders;
 
 /// <summary>
-/// Builder for Road class, used to create roads
+///     Builder for Road class, used to create roads
 /// </summary>
 public class RoadBuilder
 {
-    private readonly Road _road = new Road();
+    private readonly Road _road = new();
 
     public RoadBuilder SetArea(int area)
     {
         _road.Area = area;
         return this;
     }
-    
+
     public RoadBuilder SetType(RoadType type)
     {
         _road.Type = type;
@@ -45,9 +45,9 @@ public class RoadBuilder
         return this;
     }
 
-    
+
     /// <summary>
-    /// Builds default road
+    ///     Builds default road
     /// </summary>
     /// <returns>Road</returns>
     public Road Build()

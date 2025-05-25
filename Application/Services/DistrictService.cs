@@ -2,6 +2,7 @@
 using Domain.Composite;
 
 namespace Application.Services;
+
 public class DistrictService : IDistrictService
 {
     public DistrictComposite Create(string name)

@@ -12,17 +12,11 @@ public abstract class AbstractHandler
     public void Handle(Exception ex)
     {
         if (CanHandle(ex))
-        {
             Process(ex);
-        }
         else if (_next != null)
-        {
             _next.Handle(ex);
-        }
         else
-        {
             throw ex;
-        }
     }
 
     protected abstract bool CanHandle(Exception ex);

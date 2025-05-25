@@ -5,6 +5,8 @@ using Application.Services;
 using Domain.Composite;
 using Domain.Models;
 using dot_net_lab_4_sims_parody.ExceptionHandlers;
+using dot_net_lab_4_sims_parody.Presentation;
+using dot_net_lab_4_sims_parody.UIHolding;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace dot_net_lab_4_sims_parody;
@@ -86,37 +88,37 @@ internal static class Program
             // CityService це дурна ідея, тому буде отак
             var city = new CityComposite("Симулянськ");
 
-            var school = buildingService.Create(new BuildingDto()
+            var school = buildingService.Create(new BuildingDto
             {
                 Type = BuildingType.School,
                 Floors = 3,
                 Capacity = 500,
                 Area = 400,
-                MaintenanceCost = 3000,
+                MaintenanceCost = 3000
             });
 
-            var road = roadService.Create(new RoadDto()
+            var road = roadService.Create(new RoadDto
             {
                 Type = RoadType.TransitOnly,
                 Lanes = 2,
                 HasLights = true,
                 Area = 2,
-                MaintenanceCost = 3000,
+                MaintenanceCost = 3000
             });
 
-            var utility = utilityService.Create(new UtilityDto()
+            var utility = utilityService.Create(new UtilityDto
             {
                 Type = UtilityType.WaterTower,
                 ProductionCapacity = 20000,
                 Area = 3,
-                MaintenanceCost = 1000,
+                MaintenanceCost = 1000
             });
 
             buildingService.AddToQuarter(centralQuarter, school);
             roadService.AddToQuarter(centralQuarter, road);
             utilityService.AddToQuarter(centralQuarter, utility);
 
-            buildingService.AddToQuarter(residentialQuarter, buildingService.Create(new BuildingDto()
+            buildingService.AddToQuarter(residentialQuarter, buildingService.Create(new BuildingDto
             {
                 Type = BuildingType.Apartment,
                 Floors = 5,
@@ -124,27 +126,27 @@ internal static class Program
                 Area = 6,
                 MaintenanceCost = 2000
             }));
-            roadService.AddToQuarter(residentialQuarter, roadService.Create(new RoadDto()
+            roadService.AddToQuarter(residentialQuarter, roadService.Create(new RoadDto
             {
                 Lanes = 1,
                 HasLights = false,
                 Area = 2,
-                MaintenanceCost = 300,
+                MaintenanceCost = 300
             }));
 
-            utilityService.AddToQuarter(industrialQuarter, utilityService.Create(new UtilityDto()
+            utilityService.AddToQuarter(industrialQuarter, utilityService.Create(new UtilityDto
             {
                 Type = UtilityType.PowerPlant,
                 ProductionCapacity = 50000,
                 Area = 10,
-                MaintenanceCost = 5000,
+                MaintenanceCost = 5000
             }));
-            roadService.AddToQuarter(industrialQuarter, roadService.Create(new RoadDto()
+            roadService.AddToQuarter(industrialQuarter, roadService.Create(new RoadDto
             {
                 Lanes = 3,
                 HasLights = true,
                 Area = 4,
-                MaintenanceCost = 800,
+                MaintenanceCost = 800
             }));
 
             quarterService.AddToDistrict(centralDistrict, centralQuarter);
@@ -239,6 +241,96 @@ internal static class Program
             city.Display();
             Console.WriteLine($"\nЗагальна вартість утримання: {city.GetMaintenanceCost()}");
             Console.WriteLine($"Загальна площа: {city.GetTotalArea()}");
+
+            string? currentCityName = null;
+
+            var menuOptions = new[]
+            {
+                "Create city",
+                "Open city",
+                "Delete city",
+                "Show info about city",
+                "Exit"
+            };
+
+            var menuActions = new Dictionary<int, Action>
+            {
+                {
+                    0, () =>
+                    {
+                        Console.Write("Enter city name: ");
+                        var name = Console.ReadLine();
+                        if (string.IsNullOrWhiteSpace(name)) return;
+
+                        if (CityStorage.GetCity(name) != null)
+                        {
+                            Console.WriteLine("City already exists.");
+                            return;
+                        }
+
+                        var newCity = new CityComposite(name);
+                        CityStorage.AddCity(newCity);
+                        currentCityName = name;
+                        Console.WriteLine($"City '{name}' created.");
+                    }
+                },
+                {
+                    1, () =>
+                    {
+                        Console.Write("Enter city name to open: ");
+                        var name = Console.ReadLine();
+                        if (CityStorage.GetCity(name) != null)
+                        {
+                            currentCityName = name;
+                            Console.WriteLine($"City '{name}' is now open.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("City not found.");
+                        }
+                    }
+                },
+                {
+                    2, () =>
+                    {
+                        Console.Write("Enter city name to delete: ");
+                        var name = Console.ReadLine();
+                        if (CityStorage.GetCity(name) != null)
+                        {
+                            CityStorage.RemoveCity(name);
+                            if (currentCityName == name) currentCityName = null;
+                            Console.WriteLine($"City '{name}' deleted.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("City not found.");
+                        }
+                    }
+                },
+                {
+                    3, () =>
+                    {
+                        if (string.IsNullOrEmpty(currentCityName))
+                        {
+                            Console.WriteLine("No city is currently open.");
+                            return;
+                        }
+
+                        var city = CityStorage.GetCity(currentCityName);
+                        ConsoleUIController.MakeHeader(city.Name);
+                        city.Display();
+                        Console.ReadLine();
+                    }
+                },
+                { 4, () => Environment.Exit(0) }
+            };
+            do
+            {
+                CityStorage.LoadAll();
+                ConsoleUIController.RunMenu(menuActions, menuOptions);       
+                CityStorage.SaveAll();
+            } while (DateTime.Now < new DateTime(2077, 1, 1));
+            
         }
         catch (Exception ex)
         {

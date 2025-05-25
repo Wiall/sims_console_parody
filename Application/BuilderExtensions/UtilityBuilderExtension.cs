@@ -2,6 +2,7 @@
 using Domain.Builders;
 
 namespace Application.BuilderExtensions;
+
 public static class UtilityBuilderExtension
 {
     public static UtilityBuilder ApplyDto(this UtilityBuilder builder, UtilityDto dto)

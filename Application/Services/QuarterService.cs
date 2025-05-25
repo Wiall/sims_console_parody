@@ -2,6 +2,7 @@
 using Domain.Composite;
 
 namespace Application.Services;
+
 public class QuarterService : IQuarterService
 {
     public QuarterComposite Create(string name)
