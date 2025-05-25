@@ -1,7 +1,7 @@
 namespace Domain.Models;
 
 /// <summary>
-/// Enumeration of all available building types in the city simulation.
+///     Enumeration of all available building types in the city simulation.
 /// </summary>
 public enum BuildingType
 {
@@ -28,7 +28,7 @@ public enum BuildingType
 }
 
 /// <summary>
-/// Specifies types of roads typically used in urban planning.
+///     Specifies types of roads typically used in urban planning.
 /// </summary>
 public enum RoadType
 {
@@ -63,9 +63,8 @@ public enum RoadType
     TransitOnly
 }
 
-
 /// <summary>
-/// Enumeration of all available utility types in the city simulation.
+///     Enumeration of all available utility types in the city simulation.
 /// </summary>
 public enum UtilityType
 {

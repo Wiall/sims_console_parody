@@ -1,6 +1,4 @@
-﻿using Application.Dtos;
-using Domain.Composite;
-using Domain.Models;
+﻿using Domain.Composite;
 
 namespace Application.Interfaces;
 

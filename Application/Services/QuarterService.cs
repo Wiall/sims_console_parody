@@ -2,6 +2,7 @@
 using Domain.Composite;
 
 namespace Application.Services;
+
 public class QuarterService : IQuarterService
 {
     public QuarterComposite Create(string name)
@@ -9,12 +10,12 @@ public class QuarterService : IQuarterService
         return new QuarterComposite(name);
     }
 
-    public void Add(DistrictComposite district, QuarterComposite quarter)
+    public void AddToDistrict(DistrictComposite district, QuarterComposite quarter)
     {
         district.AddQuarter(quarter);
     }
 
-    public void Delete(DistrictComposite district, QuarterComposite quarter)
+    public void DeleteFromDistrict(DistrictComposite district, QuarterComposite quarter)
     {
         district.RemoveQuarter(quarter);
     }

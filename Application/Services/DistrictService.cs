@@ -2,19 +2,20 @@
 using Domain.Composite;
 
 namespace Application.Services;
+
 public class DistrictService : IDistrictService
 {
-    public DistrictComposite Creatre(string name)
+    public DistrictComposite Create(string name)
     {
         return new DistrictComposite(name);
     }
 
-    public void Add(CityComposite city, DistrictComposite district)
+    public void AddToCity(CityComposite city, DistrictComposite district)
     {
         city.AddDistrict(district);
     }
 
-    public void Delete(CityComposite city, DistrictComposite district)
+    public void DeleteFromCity(CityComposite city, DistrictComposite district)
     {
         city.RemoveDistrict(district);
     }

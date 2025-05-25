@@ -2,6 +2,7 @@
 using Domain.Builders;
 
 namespace Application.BuilderExtensions;
+
 public static class RoadBuilderExtension
 {
     public static RoadBuilder ApplyDto(this RoadBuilder builder, RoadDto dto)

@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = dot_net_lab_4_sims_parody
-build_property.ProjectDir = C:\Users\Kirill\VS_stuff\KPI\neti\city\dot_net_lab_4_sims_parody\
+build_property.ProjectDir = D:\RiderProjects\sims_console_parody\dot_net_lab_4_sims_parody\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

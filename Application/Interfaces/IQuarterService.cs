@@ -1,6 +1,7 @@
 ﻿using Domain.Composite;
 
 namespace Application.Interfaces;
+
 public interface IQuarterService
 {
     QuarterComposite Create(string name);
