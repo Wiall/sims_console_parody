@@ -2,31 +2,35 @@ using Domain.Interfaces;
 
 namespace Domain.Composite;
 
-public class QuarterComposite(string name) : IInfrastructureComponent
+public class QuarterComposite : AbstractInfrastructureComponent
 {
-    private readonly List<IInfrastructureComponent> _components = new();
-    public string Name { get; set; } = name;
-    public int Area => _components.Sum(c => c.Area);
+    public List<AbstractInfrastructureComponent> Components { get; set; } = new();
 
-    public decimal GetMaintenanceCost()
+    public QuarterComposite(string name)
     {
-        return _components.Sum(c => c.GetMaintenanceCost());
+        Name = name;
     }
 
-    public void Display(int indent = 0)
+
+    public override decimal GetMaintenanceCost()
+    {
+        return Components.Sum(c => c.GetMaintenanceCost());
+    }
+
+    public override void Display(int indent = 0)
     {
         Console.WriteLine($"{new string(' ', indent)}+ Quarter: {Name}");
-        foreach (var component in _components)
+        foreach (var component in Components)
             component.Display(indent + 2);
     }
 
-    public void AddComponent(IInfrastructureComponent component)
+    public void AddComponent(AbstractInfrastructureComponent component)
     {
-        _components.Add(component);
+        Components.Add(component);
     }
 
-    public void RemoveComponent(IInfrastructureComponent component)
+    public void RemoveComponent(AbstractInfrastructureComponent component)
     {
-        _components.Remove(component);
+        Components.Remove(component);
     }
 }

@@ -5,7 +5,7 @@ namespace Domain.Models;
 /// <summary>
 ///     Building model class
 /// </summary>
-public class Building : IInfrastructureComponent
+public class Building : AbstractInfrastructureComponent
 {
     public BuildingType Type { get; set; } // Тип будівлі по типу "Школа" чи "Офіс"
     public int Floors { get; set; } = 1; // Кількість поверхів
@@ -16,15 +16,18 @@ public class Building : IInfrastructureComponent
     public decimal Income { get; set; } // Прибуток з будівлі (оренда, інші прибутки)
     public decimal MaintenanceCost { get; set; } // Ціна утримання будівлі
     public decimal Price { get; set; } // Ціна будівництва
-    public string Name => $"{Type} Building";
-    public int Area { get; set; } = 1; // Площа на планері (плейсхолдер, залежить як реалізований буде планер)
 
-    public void Display(int depth = 0)
+    public Building()
     {
-        Console.WriteLine(new string(' ', depth) + $"- Building: {Type}, Floors: {Floors}, Income: {Income}");
+        Name = $"{Type} Building";
     }
 
-    public decimal GetMaintenanceCost()
+    public override void Display(int indent = 0)
+    {
+        Console.WriteLine(new string(' ', indent) + $"- Building: {Type}, Floors: {Floors}, Income: {Income}");
+    }
+
+    public override decimal GetMaintenanceCost()
     {
         return MaintenanceCost;
     }

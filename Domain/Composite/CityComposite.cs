@@ -7,19 +7,19 @@ namespace Domain.Composite;
 /// </summary>
 public class CityComposite(string name) : ICityComponent
 {
-    private readonly List<ICityComponent> _districts = new();
+    public List<DistrictComposite> Districts { get; set; } = new();
     public string Name { get; set; } = name;
 
     public decimal GetMaintenanceCost()
     {
-        return _districts.Sum(d => d.GetMaintenanceCost());
+        return Districts.Sum(d => d.GetMaintenanceCost());
     }
 
-    public void Display(int indent = 0)
+    public void Display(int depth = 0)
     {
-        foreach (var district in _districts)
+        foreach (var district in Districts)
         {
-            district.Display(indent + 2);
+            district.Display(depth + 2);
             Console.WriteLine();
         }
     }
@@ -27,17 +27,17 @@ public class CityComposite(string name) : ICityComponent
     public int GetTotalArea()
     {
         var total = 0;
-        foreach (var district in _districts) total += district.GetTotalArea();
+        foreach (var district in Districts) total += district.GetTotalArea();
         return total;
     }
 
-    public void AddDistrict(ICityComponent district)
+    public void AddDistrict(DistrictComposite district)
     {
-        _districts.Add(district);
+        Districts.Add(district);
     }
 
-    public void RemoveDistrict(ICityComponent district)
+    public void RemoveDistrict(DistrictComposite district)
     {
-        _districts.Remove(district);
+        Districts.Remove(district);
     }
 }

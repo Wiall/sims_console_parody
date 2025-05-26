@@ -29,7 +29,6 @@ public class CityControlsMenuView : IMenuView
         "Remove a Quarter",
         "Remove a Building",
         "Show info about city",
-        // сюда додавати ще опції
         "Back to main menu"
     };
 
@@ -42,7 +41,10 @@ public class CityControlsMenuView : IMenuView
                 var name = Console.ReadLine();
 
                 var district = _cityController.CreateDistrict(name);
-                CityStorage.GetCity(CurrentCityName).AddDistrict(district);
+
+                var city = CityStorage.GetCity(CurrentCityName);
+                city.AddDistrict(district);
+
                 Console.WriteLine($"District '{district.Name}' created.");
             }
         },
@@ -72,15 +74,7 @@ public class CityControlsMenuView : IMenuView
         {
             3, () =>
             {
-                if (string.IsNullOrEmpty(CurrentCityName))
-                {
-                    throw new ServiceException("No city is currently open.");
-                }
-
-                var city = CityStorage.GetCity(CurrentCityName);
-                ConsoleUIController.MakeHeader(city.Name);
-                city.Display();
-                Console.ReadLine();
+                
             }
         },
         {
@@ -98,7 +92,15 @@ public class CityControlsMenuView : IMenuView
         {
             6, () =>
             {
-                
+                if (string.IsNullOrEmpty(CurrentCityName))
+                {
+                    throw new ServiceException("No city is currently open.");
+                }
+
+                var city = CityStorage.GetCity(CurrentCityName);
+                ConsoleUIController.MakeHeader(city.Name);
+                city.Display();
+                Console.ReadLine();
             }
         },
         {

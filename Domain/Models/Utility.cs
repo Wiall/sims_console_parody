@@ -2,21 +2,23 @@ using Domain.Interfaces;
 
 namespace Domain.Models;
 
-public class Utility : IInfrastructureComponent
+public class Utility : AbstractInfrastructureComponent
 {
     public UtilityType Type { get; set; } // Тип, наприклад: "PowerPlant", "WaterTower"
     public double ProductionCapacity { get; set; } = 0; // Обсяг, який виробляється
     public decimal ConstructionCost { get; set; } // Вартість будівництва
     public decimal MaintenanceCost { get; set; } // Вартість утримання
-    public string Name => $"{Type} Utility";
-    public int Area { get; set; } // Площа
-
-    public void Display(int depth = 0)
+    public Utility()
     {
-        Console.WriteLine(new string(' ', depth) + $"- Infrastructure: {Type}, Capacity: {ProductionCapacity}");
+        Name = $"{Type} Utility";
     }
 
-    public decimal GetMaintenanceCost()
+    public override void Display(int indent = 0)
+    {
+        Console.WriteLine(new string(' ', indent) + $"- Infrastructure: {Type}, Capacity: {ProductionCapacity}");
+    }
+
+    public override decimal GetMaintenanceCost()
     {
         return MaintenanceCost;
     }
