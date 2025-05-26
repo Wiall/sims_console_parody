@@ -25,6 +25,9 @@ public class CityControlsMenuView : IMenuView
         "Create a District",
         "Create a Quarter",
         "Create a Building",
+        "Remove a District",
+        "Remove a Quarter",
+        "Remove a Building",
         "Show info about city",
         // сюда додавати ще опції
         "Back to main menu"
@@ -35,11 +38,11 @@ public class CityControlsMenuView : IMenuView
         {
             0, () =>
             {
-                Console.Write("Enter Dsitrict`s name: ");
+                Console.Write("Enter District`s name: ");
                 var name = Console.ReadLine();
 
                 var district = _cityController.CreateDistrict(name);
-
+                CityStorage.GetCity(CurrentCityName).AddDistrict(district);
                 Console.WriteLine($"District '{district.Name}' created.");
             }
         },
@@ -82,6 +85,24 @@ public class CityControlsMenuView : IMenuView
         },
         {
             4, () =>
+            {
+                
+            }
+        },
+        {
+            5, () =>
+            {
+                
+            }
+        },
+        {
+            6, () =>
+            {
+                
+            }
+        },
+        {
+            7, () =>
             {
                 CurrentCityName = null;
                 _nextView = View.MainMenu;
