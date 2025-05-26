@@ -31,7 +31,7 @@ public class UtilityService : IUtilityService
             throw new ServiceException("Quarter is null!");
         }
 
-        quarter.AddComponent(model);
+        quarter.AddUtility(model);
     }
 
     public void DeleteFromQuarter(QuarterComposite? quarter, Utility? model)
@@ -46,6 +46,6 @@ public class UtilityService : IUtilityService
             throw new ServiceException("Quarter is null!");
         }
 
-        quarter.RemoveComponent(model);
+        quarter.RemoveUtility(model);
     }
 }

@@ -31,7 +31,7 @@ public class BuildingService : IBuildingService
             throw new ServiceException("Quarter is null!");
         }
 
-        quarter.AddComponent(model);
+        quarter.AddBuilding(model);
     }
 
     public void DeleteFromQuarter(QuarterComposite? quarter, Building? model)
@@ -46,6 +46,6 @@ public class BuildingService : IBuildingService
             throw new ServiceException("Quarter is null!");
         }
 
-        quarter.RemoveComponent(model);
+        quarter.RemoveBuilding(model);
     }
 }

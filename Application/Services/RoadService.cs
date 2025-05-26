@@ -31,7 +31,7 @@ public class RoadService : IRoadService
             throw new ServiceException("Quarter is null!");
         }
 
-        quarter.AddComponent(model);
+        quarter.AddRoad(model);
     }
 
     public void DeleteFromQuarter(QuarterComposite? quarter, Road? model)
@@ -46,6 +46,6 @@ public class RoadService : IRoadService
             throw new ServiceException("Quarter is null!");
         }
 
-        quarter.RemoveComponent(model);
+        quarter.RemoveRoad(model);
     }
 }

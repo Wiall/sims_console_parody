@@ -4,7 +4,7 @@ namespace Domain.Composite;
 
 public class DistrictComposite(string name) : ICityComponent
 {
-    public List<AbstractInfrastructureComponent> Quarters { get; set; } = new();
+    public List<QuarterComposite> Quarters { get; set; } = new();
     public string Name { get; set; } = name;
 
     public decimal GetMaintenanceCost()
@@ -27,12 +27,12 @@ public class DistrictComposite(string name) : ICityComponent
             quarter.Display(depth + 2);
     }
 
-    public void AddQuarter(AbstractInfrastructureComponent quarter)
+    public void AddQuarter(QuarterComposite quarter)
     {
         Quarters.Add(quarter);
     }
 
-    public void RemoveQuarter(AbstractInfrastructureComponent quarter)
+    public void RemoveQuarter(QuarterComposite quarter)
     {
         Quarters.Remove(quarter);
     }

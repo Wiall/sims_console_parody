@@ -1,36 +1,77 @@
 using Domain.Interfaces;
+using Domain.Models;
 
 namespace Domain.Composite;
 
-public class QuarterComposite : AbstractInfrastructureComponent
+public class QuarterComposite(string name) : IInfrastructureComponent
 {
-    public List<AbstractInfrastructureComponent> Components { get; set; } = new();
+    public List<Building> Buildings { get; set; } = new();
 
-    public QuarterComposite(string name)
+    public List<Road> Roads { get; set; } = new();
+
+    public List<Utility> Utilities { get; set; } = new();
+
+    public string Name { get; set; } = name;
+
+    public int Area { get; set; } = 1;
+
+
+    public decimal GetMaintenanceCost()
     {
-        Name = name;
+        decimal total = 0;
+        total += Buildings.Sum(c => c.GetMaintenanceCost());
+        total += Roads.Sum(c => c.GetMaintenanceCost());
+        total += Utilities.Sum(c => c.GetMaintenanceCost());
+
+        return total;
     }
 
-
-    public override decimal GetMaintenanceCost()
-    {
-        return Components.Sum(c => c.GetMaintenanceCost());
-    }
-
-    public override void Display(int indent = 0)
+    public void Display(int indent = 0)
     {
         Console.WriteLine($"{new string(' ', indent)}+ Quarter: {Name}");
-        foreach (var component in Components)
-            component.Display(indent + 2);
+        foreach (var building in Buildings)
+        {
+            building.Display(indent + 2);
+        }
+
+        foreach (var road in Roads)
+        {
+            road.Display(indent + 2);
+        }
+
+        foreach (var utility in Utilities)
+        {
+            utility.Display(indent + 2);
+        }
     }
 
-    public void AddComponent(AbstractInfrastructureComponent component)
+    public void AddBuilding(Building building)
     {
-        Components.Add(component);
+        Buildings.Add(building);
     }
 
-    public void RemoveComponent(AbstractInfrastructureComponent component)
+    public void AddRoad(Road road)
     {
-        Components.Remove(component);
+        Roads.Add(road);
+    }
+
+    public void AddUtility(Utility utility)
+    {
+        Utilities.Add(utility);
+    }
+
+    public void RemoveBuilding(Building building)
+    {
+        Buildings.Remove(building);
+    }
+
+    public void RemoveRoad(Road road)
+    {
+        Roads.Remove(road);
+    }
+
+    public void RemoveUtility(Utility utility)
+    {
+        Utilities.Remove(utility);
     }
 }
