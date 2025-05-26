@@ -1,5 +1,7 @@
-﻿using Application.Interfaces;
+﻿using System.Data.SqlTypes;
+using Application.Interfaces;
 using Application.Services;
+using Domain.Composite;
 using dot_net_lab_4_sims_parody.ExceptionHandlers;
 using dot_net_lab_4_sims_parody.Presentation;
 using dot_net_lab_4_sims_parody.UIHolding;
@@ -35,6 +37,7 @@ internal static class Program
 
         var cityController = new CityController(buildingService, districtService, quarterService);
         string? currentCityName = null;
+        DistrictComposite? currentDistrict = null;
         var nextView = View.MainMenu;
         IMenuView view;
 
@@ -49,15 +52,27 @@ internal static class Program
                         CityStorage.LoadAll();
                         ConsoleUIController.RunMenu(MainMenuView.MenuActions, MainMenuView.MenuOptions); // Було б класно викликати тут view, але я не хочу це імплементувати
                         CityStorage.SaveAll();
-                        currentCityName = view.GetCityName();
+                        currentCityName = view.GetName();
                         nextView = view.GetNextView();
                         break;
                     case View.CityControlsMenu:
-                        view = new CityControlsMenuView(currentCityName, cityController);
+                        view = new CityControlsMenuView(currentCityName, currentDistrict, cityController);
                         CityStorage.LoadAll();
                         ConsoleUIController.RunMenu(CityControlsMenuView.MenuActions, CityControlsMenuView.MenuOptions);
                         CityStorage.SaveAll();
-                        currentCityName = view.GetCityName();
+                        currentCityName = view.GetName();
+                        currentDistrict = view.GetDistrict();
+                        nextView = view.GetNextView();
+                        break;
+                    case View.DistrictMenuView:
+                        view = new DistrictMenuView(currentCityName,
+                            CityStorage.GetCity(currentCityName).Districts.FirstOrDefault(currentDistrict),
+                            cityController);
+                        CityStorage.LoadAll();
+                        ConsoleUIController.RunMenu(DistrictMenuView.MenuActions, DistrictMenuView.MenuOptions);
+                        CityStorage.SaveAll();
+                        currentCityName = view.GetName();
+                        currentDistrict = view.GetDistrict();
                         nextView = view.GetNextView();
                         break;
                     default: break;

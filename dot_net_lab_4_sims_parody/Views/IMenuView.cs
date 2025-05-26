@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Domain.Composite;
+using Domain.Models;
 
 namespace dot_net_lab_4_sims_parody.Views;
 
@@ -12,7 +13,9 @@ public interface IMenuView
 
     static Dictionary<int, Action>? MenuActions { get; set; }
 
-    string? GetCityName();
+    string? GetName();
+
+    DistrictComposite? GetDistrict();
 
     View GetNextView();
 }
@@ -20,5 +23,6 @@ public interface IMenuView
 public enum View
 {
     MainMenu,
-    CityControlsMenu
+    CityControlsMenu,
+    DistrictMenuView
 }

@@ -1,35 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj": {}
+    "E:\\.net\\lab4\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Application\\Application.csproj": {
+    "E:\\.net\\lab4\\sims_console_parody\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Application\\Application.csproj",
+        "projectUniqueName": "E:\\.net\\lab4\\sims_console_parody\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\Kirill\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Application\\obj\\",
+        "projectPath": "E:\\.net\\lab4\\sims_console_parody\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\makcp\\.nuget\\packages\\",
+        "outputPath": "E:\\.net\\lab4\\sims_console_parody\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Kirill\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\makcp\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Domain\\Domain.csproj"
+              "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj": {
+                "projectPath": "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj"
               }
             }
           }
@@ -38,11 +36,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -64,28 +57,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\makcp\\.dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Domain\\Domain.csproj": {
+    "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Domain\\Domain.csproj",
+        "projectUniqueName": "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\Kirill\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Domain\\obj\\",
+        "projectPath": "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\makcp\\.nuget\\packages\\",
+        "outputPath": "E:\\.net\\lab4\\sims_console_parody\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Kirill\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\makcp\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -98,11 +89,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -124,39 +110,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\makcp\\.dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj": {
+    "E:\\.net\\lab4\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj",
+        "projectUniqueName": "E:\\.net\\lab4\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj",
         "projectName": "dot_net_lab_4_sims_parody",
-        "projectPath": "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj",
-        "packagesPath": "C:\\Users\\Kirill\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\dot_net_lab_4_sims_parody\\obj\\",
+        "projectPath": "E:\\.net\\lab4\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj",
+        "packagesPath": "C:\\Users\\makcp\\.nuget\\packages\\",
+        "outputPath": "E:\\.net\\lab4\\sims_console_parody\\dot_net_lab_4_sims_parody\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Kirill\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\makcp\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Application\\Application.csproj"
+              "E:\\.net\\lab4\\sims_console_parody\\Application\\Application.csproj": {
+                "projectPath": "E:\\.net\\lab4\\sims_console_parody\\Application\\Application.csproj"
               },
-              "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\Kirill\\VS_stuff\\KPI\\neti\\city\\Domain\\Domain.csproj"
+              "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj": {
+                "projectPath": "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj"
               }
             }
           }
@@ -165,11 +149,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -197,7 +176,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\makcp\\.dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

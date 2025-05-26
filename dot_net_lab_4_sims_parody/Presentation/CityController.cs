@@ -35,4 +35,9 @@ public class CityController
     {
         return _buildingService.Create(building);
     }
+
+    public void AddQuarterToDistrict(DistrictComposite? district, QuarterComposite? quarter)
+    {
+        _quarterService.AddToDistrict(district, quarter);
+    }
 }

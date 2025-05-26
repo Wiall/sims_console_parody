@@ -46,6 +46,19 @@ public class MainMenuView : IMenuView
         {
             1, () =>
             {
+                var cities = CityStorage.Cities;
+
+                if (cities.Count == 0)
+                {
+                    throw new NotFoundException("City");
+                }
+
+                Console.WriteLine("Cities:");
+                for (var i = 1; i <= cities.Count; i++)
+                {
+                    Console.WriteLine($"{i}.{cities[i - 1].Name}");
+                }
+                
                 Console.Write("Enter city name to open: ");
                 var name = Console.ReadLine();
                 if (CityStorage.GetCity(name) != null)
@@ -80,7 +93,7 @@ public class MainMenuView : IMenuView
         { 3, () => Environment.Exit(0) }
     };
 
-    public string? GetCityName()
+    public string? GetName()
     {
         return CurrentCityName;
     }
@@ -88,5 +101,10 @@ public class MainMenuView : IMenuView
     public View GetNextView()
     {
         return _nextView;
+    }
+
+    public DistrictComposite? GetDistrict()
+    {
+        return null;
     }
 }
