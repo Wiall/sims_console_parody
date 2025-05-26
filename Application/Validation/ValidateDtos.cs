@@ -3,9 +3,9 @@ using Domain.Models;
 
 namespace Application.Validation;
 
-public class ValidateDtos
+public static class ValidateDtos
 {
-    public static void ValidateBuildingDto(BuildingDto building)
+    public static void ValidateBuildingDto(BuildingDto? building)
     {
         if (building == null) throw new ServiceException("Building object is null");
 
@@ -46,7 +46,7 @@ public class ValidateDtos
             throw new OutOfRangeException("Building Price");
     }
 
-    public static void ValidateRoadDto(RoadDto road)
+    public static void ValidateRoadDto(RoadDto? road)
     {
         if (road == null) throw new ServiceException("Road object is null");
 
@@ -71,7 +71,7 @@ public class ValidateDtos
             throw new OutOfRangeException("Road Lanes");
     }
 
-    public static void ValidateUtilityDto(UtilityDto utility)
+    public static void ValidateUtilityDto(UtilityDto? utility)
     {
         if (utility == null) throw new ServiceException("Utility object is null");
 

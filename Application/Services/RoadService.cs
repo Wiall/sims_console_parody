@@ -10,9 +10,7 @@ namespace Application.Services;
 
 public class RoadService : IRoadService
 {
-    // думаю, може отут не додавати до квартала, а просто повертати, але тоді треба окрема функція для додавання
-    // головна фіча сервісів - валідація, її можна перенести в Presentation, але там може губитись
-    public Road Create(RoadDto dto)
+    public Road Create(RoadDto? dto)
     {
         ValidateDtos.ValidateRoadDto(dto);
 
@@ -21,19 +19,33 @@ public class RoadService : IRoadService
             .Build();
     }
 
-    public void AddToQuarter(QuarterComposite quarter, Road model)
+    public void AddToQuarter(QuarterComposite? quarter, Road? model)
     {
+        if (model == null)
+        {
+            throw new ServiceException("Structure is null!");
+        }
+
+        if (quarter == null)
+        {
+            throw new ServiceException("Quarter is null!");
+        }
+
         quarter.AddComponent(model);
     }
 
-    public void DeleteFromQuarter(QuarterComposite quarter, Road model)
+    public void DeleteFromQuarter(QuarterComposite? quarter, Road? model)
     {
-        quarter.RemoveComponent(model);
-    }
+        if (model == null)
+        {
+            throw new ServiceException("Structure is null!");
+        }
 
-    public void Update(QuarterComposite quarter, Road model)
-    {
-        throw new NotImplementedException();
-        // я нінаю як ми вибиратимемо їх зі списку, може взагалі його прибрати
+        if (quarter == null)
+        {
+            throw new ServiceException("Quarter is null!");
+        }
+
+        quarter.RemoveComponent(model);
     }
 }

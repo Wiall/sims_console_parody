@@ -12,6 +12,7 @@ public class OutOfRangeExceptionHandler : AbstractHandler
     protected override void Process(Exception ex)
     {
         Console.WriteLine($"{ex.Message}");
-        // можна додавати більше логіки
+        Console.WriteLine("\nPress any button to continue...");
+        Console.ReadKey();
     }
 }

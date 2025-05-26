@@ -10,6 +10,7 @@ public class GenericExceptionHandler : AbstractHandler
     protected override void Process(Exception ex)
     {
         Console.WriteLine($"Невідома помилка: {ex.Message}");
-        // можна додавати більше логіки
+        Console.WriteLine("\nPress any button to continue...");
+        Console.ReadKey();
     }
 }
