@@ -4,6 +4,7 @@ using Application.Validation;
 using Domain.Composite;
 using Domain.Models;
 using dot_net_lab_4_sims_parody.Presentation;
+using dot_net_lab_4_sims_parody.UIHolding;
 
 namespace dot_net_lab_4_sims_parody.Views;
 
@@ -43,13 +44,9 @@ public class QuarterMenuView : IMenuView
         {
             0, () =>
             {
-                Console.WriteLine("Road types:");
-                for (var i = 1; i <= Enum.GetValues(typeof(RoadType)).Length; i++)
-                {
-                    Console.WriteLine($"{i}.{Enum.GetValues<RoadType>()[i - 1]}");
-                }
-                Console.Write("Enter road type: ");
-                var type = (RoadType)Enum.Parse(typeof(RoadType), Console.ReadLine(), true);
+                var roadTypeOptions = Enum.GetNames(typeof(RoadType));
+                int selectedIndex = ConsoleUIController.MenuHold(roadTypeOptions);
+                var type = (RoadType)Enum.Parse(typeof(RoadType), roadTypeOptions[selectedIndex]);
                 
                 Console.Write("Enter road name: ");
                 var name = Console.ReadLine();
@@ -60,8 +57,10 @@ public class QuarterMenuView : IMenuView
                 Console.Write("Enter road construction cost: ");
                 var constructionCost = decimal.Parse(Console.ReadLine());
                 
-                Console.Write("Enter whether road has lights: ");
-                var hasLights = bool.Parse(Console.ReadLine());
+                Console.Write("Select if road has lights: ");
+                var hasLightsOptions = new[] { "True", "False" };
+                int selectedLightsIndex = ConsoleUIController.MenuHold(hasLightsOptions);
+                bool hasLights = selectedLightsIndex == 0;
                 
                 Console.Write("Enter road lanes amount: ");
                 var lanes = int.Parse(Console.ReadLine());
@@ -78,198 +77,180 @@ public class QuarterMenuView : IMenuView
                     Type = type,
                     Name = name
                 });
-                _cityController.AddRoadToQuarter(road, CurrentQuarter);
-                Console.WriteLine("Road created.");
+                var city = CityStorage.GetCity(CurrentCityName);
+                var district = city?.Districts.FirstOrDefault(d => d.Name == CurrentDistrict?.Name);
+                var quarter = district?.Quarters.FirstOrDefault(q => q.Name == CurrentQuarter?.Name);
+
+                if (quarter == null)
+                {
+                    Console.WriteLine("Quarter not found.");
+                    return;
+                }
+
+                _cityController.AddRoadToQuarter(road, quarter);
+
+                CityStorage.SaveAll();
             }
         },
         {
-            1, () =>
-            {
-                Console.WriteLine("Building types:");
-                for (var i = 1; i <= Enum.GetValues(typeof(BuildingType)).Length; i++)
-                {
-                    Console.WriteLine($"{i}.{Enum.GetValues<BuildingType>()[i - 1]}");
-                }
-                Console.Write("Enter building type: ");
-                var type = (BuildingType)Enum.Parse(typeof(BuildingType), Console.ReadLine(), true);
-                
-                Console.Write("Enter building name: ");
-                var name = Console.ReadLine();
-                
-                Console.Write("Enter building area: ");
-                var area = int.Parse(Console.ReadLine());
-                
-                Console.Write("Enter building people capacity: ");
-                var capacity = int.Parse(Console.ReadLine());
-                
-                Console.Write("Enter whether building has parking: ");
-                var hasParking = bool.Parse(Console.ReadLine());
+    1, () =>
+    {
+        var buildingTypeOptions = Enum.GetNames(typeof(BuildingType));
+        int selectedIndex = ConsoleUIController.MenuHold(buildingTypeOptions);
+        var type = (BuildingType)Enum.Parse(typeof(BuildingType), buildingTypeOptions[selectedIndex]);
+        
+        Console.Write("Enter building name: ");
+        var name = Console.ReadLine();
+        
+        Console.Write("Enter building area: ");
+        var area = int.Parse(Console.ReadLine());
+        
+        Console.Write("Enter building people capacity: ");
+        var capacity = int.Parse(Console.ReadLine());
+        
+        Console.Write("Select if building has parking: ");
+        var hasParkingOptions = new[] { "True", "False" };
+        int selectedParkingIndex = ConsoleUIController.MenuHold(hasParkingOptions);
+        bool hasParking = selectedParkingIndex == 0;
 
-                Console.Write("Enter building floors amount: ");
-                var floors = int.Parse(Console.ReadLine());
-                
-                Console.Write("Enter building electricity consumption: ");
-                var electricityConsumption = double.Parse(Console.ReadLine());
-                
-                Console.Write("Enter building water consumption: ");
-                var waterConsumption = double.Parse(Console.ReadLine());
-                
-                Console.Write("Enter building income: ");
-                var income = decimal.Parse(Console.ReadLine());
+        Console.Write("Enter building floors amount: ");
+        var floors = int.Parse(Console.ReadLine());
+        
+        Console.Write("Enter building electricity consumption: ");
+        var electricityConsumption = double.Parse(Console.ReadLine());
+        
+        Console.Write("Enter building water consumption: ");
+        var waterConsumption = double.Parse(Console.ReadLine());
+        
+        Console.Write("Enter building income: ");
+        var income = decimal.Parse(Console.ReadLine());
 
-                Console.Write("Enter building maintenance cost: ");
-                var maintenanceCost = decimal.Parse(Console.ReadLine());
+        Console.Write("Enter building maintenance cost: ");
+        var maintenanceCost = decimal.Parse(Console.ReadLine());
 
-                Console.Write("Enter building price: ");
-                var price = decimal.Parse(Console.ReadLine());
+        Console.Write("Enter building price: ");
+        var price = decimal.Parse(Console.ReadLine());
 
-                var building = _cityController.CreateBuilding(new BuildingDto
-                {
-                    Area = area,
-                    Capacity = capacity,
-                    ElectricityConsumption = electricityConsumption,
-                    WaterConsumption = waterConsumption,
-                    HasParking = hasParking,
-                    Floors = floors,
-                    Income = income,
-                    MaintenanceCost = maintenanceCost,
-                    Name = name,
-                    Price = price,
-                    Type = type
-                });
-                
-                _cityController.AddBuildingToQuarter(building, CurrentQuarter);
-                Console.WriteLine("Building created.");
-            }
-        },
+        var building = _cityController.CreateBuilding(new BuildingDto
         {
-            2, () =>
-            {
-                Console.WriteLine("Utility types:");
-                for (var i = 1; i <= Enum.GetValues(typeof(UtilityType)).Length; i++)
-                {
-                    Console.WriteLine($"{i}.{Enum.GetValues<UtilityType>()[i - 1]}");
-                }
-                Console.Write("Enter utility type: ");
-                var type = (UtilityType)Enum.Parse(typeof(UtilityType), Console.ReadLine(), true);
-                
-                Console.Write("Enter utility name: ");
-                var name = Console.ReadLine();
-                
-                Console.Write("Enter utility area: ");
-                var area = int.Parse(Console.ReadLine());
-                
-                Console.Write("Enter building production capacity: ");
-                var productionCapacity = double.Parse(Console.ReadLine());
+            Area = area,
+            Capacity = capacity,
+            ElectricityConsumption = electricityConsumption,
+            WaterConsumption = waterConsumption,
+            HasParking = hasParking,
+            Floors = floors,
+            Income = income,
+            MaintenanceCost = maintenanceCost,
+            Name = name,
+            Price = price,
+            Type = type
+        });
 
-                Console.Write("Enter building maintenance cost: ");
-                var maintenanceCost = decimal.Parse(Console.ReadLine());
+        var city = CityStorage.GetCity(CurrentCityName);
+        var district = city?.Districts.FirstOrDefault(d => d.Name == CurrentDistrict?.Name);
+        var quarter = district?.Quarters.FirstOrDefault(q => q.Name == CurrentQuarter?.Name);
 
-                Console.Write("Enter building construction cost: ");
-                var constructionCost = decimal.Parse(Console.ReadLine());
+        if (quarter == null)
+        {
+            Console.WriteLine("Quarter not found.");
+            return;
+        }
 
-                var utility = _cityController.CreateUtility(new UtilityDto
-                {
-                    Area = area,
-                    MaintenanceCost = maintenanceCost,
-                    ConstructionCost = constructionCost,
-                    ProductionCapacity = productionCapacity,
-                    Type = type,
-                    Name = name
-                });
-                
-                _cityController.AddUtilityToQuarter(utility, CurrentQuarter);
-                Console.WriteLine("Utility created.");
-            }
-        },
+        _cityController.AddBuildingToQuarter(building, quarter);
+        Console.WriteLine("Building created.");
+        CityStorage.SaveAll();
+    }
+},
+{
+    2, () =>
+    {
+        var utilityTypeOptions = Enum.GetNames(typeof(UtilityType));
+        int selectedIndex = ConsoleUIController.MenuHold(utilityTypeOptions);
+        var type = (UtilityType)Enum.Parse(typeof(UtilityType), utilityTypeOptions[selectedIndex]);
+        
+        Console.Write("Enter utility name: ");
+        var name = Console.ReadLine();
+        
+        Console.Write("Enter utility area: ");
+        var area = int.Parse(Console.ReadLine());
+        
+        Console.Write("Enter building production capacity: ");
+        var productionCapacity = double.Parse(Console.ReadLine());
+
+        Console.Write("Enter building maintenance cost: ");
+        var maintenanceCost = decimal.Parse(Console.ReadLine());
+
+        Console.Write("Enter building construction cost: ");
+        var constructionCost = decimal.Parse(Console.ReadLine());
+
+        var utility = _cityController.CreateUtility(new UtilityDto
+        {
+            Area = area,
+            MaintenanceCost = maintenanceCost,
+            ConstructionCost = constructionCost,
+            ProductionCapacity = productionCapacity,
+            Type = type,
+            Name = name
+        });
+
+        var city = CityStorage.GetCity(CurrentCityName);
+        var district = city?.Districts.FirstOrDefault(d => d.Name == CurrentDistrict?.Name);
+        var quarter = district?.Quarters.FirstOrDefault(q => q.Name == CurrentQuarter?.Name);
+
+        if (quarter == null)
+        {
+            Console.WriteLine("Quarter not found.");
+            return;
+        }
+
+        _cityController.AddUtilityToQuarter(utility, quarter);
+        Console.WriteLine("Utility created.");
+        CityStorage.SaveAll();
+    }
+},
+
         {
             3, () =>
             {
                 var roads = CurrentQuarter.Roads;
+                if (roads.Count == 0) throw new NotFoundException("Road");
 
-                if (roads.Count == 0)
-                {
-                    throw new NotFoundException("Road");
-                }
-                
-                Console.WriteLine("Roads:");
-                for (var i = 1; i <= roads.Count; i++)
-                {
-                    Console.WriteLine($"{i}.{roads[i - 1].Name}");
-                }
-                Console.Write("Enter a Road name: ");
-                var name = Console.ReadLine();
-                if (CurrentQuarter.Roads.Any(r => r.Name == name))
-                {
-                    var road = CurrentQuarter.Roads
-                        .FirstOrDefault(r => r.Name == name);
-                    CurrentQuarter.RemoveRoad(road);
-                    Console.WriteLine($"Road '{name}' is now removed.");
-                }
-                else
-                {
-                    throw new NotFoundException("Road");
-                }
+                var roadNames = roads.Select(r => r.Name).ToArray();
+                int selectedIndex = ConsoleUIController.MenuHold(roadNames);
+                var selectedRoad = roads[selectedIndex];
+
+                CurrentQuarter.RemoveRoad(selectedRoad);
+                Console.WriteLine($"Road '{selectedRoad.Name}' is now removed.");
             } 
         },
         {
             4, () =>
             {
                 var buildings = CurrentQuarter.Buildings;
+                if (buildings.Count == 0) throw new NotFoundException("Building");
 
-                if (buildings.Count == 0)
-                {
-                    throw new NotFoundException("Building");
-                }
-                
-                Console.WriteLine("Buildings:");
-                for (var i = 1; i <= buildings.Count; i++)
-                {
-                    Console.WriteLine($"{i}.{buildings[i - 1].Name}");
-                }
-                Console.Write("Enter a Building name: ");
-                var name = Console.ReadLine();
-                if (CurrentQuarter.Buildings.Any(b => b.Name == name))
-                {
-                    var building = CurrentQuarter.Buildings
-                        .FirstOrDefault(b => b.Name == name);
-                    CurrentQuarter.RemoveBuilding(building);
-                    Console.WriteLine($"Building '{name}' is now removed.");
-                }
-                else
-                {
-                    throw new NotFoundException("Building");
-                }
+                var buildingNames = buildings.Select(b => b.Name).ToArray();
+                int selectedIndex = ConsoleUIController.MenuHold(buildingNames);
+                var selectedBuilding = buildings[selectedIndex];
+
+                CurrentQuarter.RemoveBuilding(selectedBuilding);
+                Console.WriteLine($"Building '{selectedBuilding.Name}' is now removed.");
+                CityStorage.SaveAll();
             } 
         },
         {
             5, () =>
             {
                 var utilities = CurrentQuarter.Utilities;
+                if (utilities.Count == 0) throw new NotFoundException("Utility");
 
-                if (utilities.Count == 0)
-                {
-                    throw new NotFoundException("Utility");
-                }
-                
-                Console.WriteLine("Utilities:");
-                for (var i = 1; i <= utilities.Count; i++)
-                {
-                    Console.WriteLine($"{i}.{utilities[i - 1].Name}");
-                }
-                Console.Write("Enter a Utility name: ");
-                var name = Console.ReadLine();
-                if (CurrentQuarter.Utilities.Any(u => u.Name == name))
-                {
-                    var utility = CurrentQuarter.Utilities
-                        .FirstOrDefault(u => u.Name == name);
-                    CurrentQuarter.RemoveUtility(utility);
-                    Console.WriteLine($"Utility '{name}' is now removed.");
-                }
-                else
-                {
-                    throw new NotFoundException("Utility");
-                }
+                var utilityNames = utilities.Select(u => u.Name).ToArray();
+                int selectedIndex = ConsoleUIController.MenuHold(utilityNames);
+                var selectedUtility = utilities[selectedIndex];
+
+                CurrentQuarter.RemoveUtility(selectedUtility);
+                Console.WriteLine($"Utility '{selectedUtility.Name}' is now removed.");
+                CityStorage.SaveAll();
             } 
         },
         {

@@ -1,6 +1,7 @@
 using Application.Validation;
 using Domain.Composite;
 using dot_net_lab_4_sims_parody.Presentation;
+using dot_net_lab_4_sims_parody.UIHolding;
 
 namespace dot_net_lab_4_sims_parody.Views;
 
@@ -60,25 +61,13 @@ public class DistrictMenuView : IMenuView
                     throw new NotFoundException("Quarters");
                 }
 
-                Console.WriteLine("Quarters:");
-                for (var i = 1; i <= quarters.Count; i++)
-                {
-                    Console.WriteLine($"{i}.{quarters[i - 1].Name}");
-                }
-                    
-                Console.Write("Enter a Quarter name: ");
-                var name = Console.ReadLine();
-                if (CurrentDistrict.Quarters.Any(d => d.Name == name))
-                {
-                    CurrentQuarter = CurrentDistrict.Quarters
-                        .FirstOrDefault(d => d.Name == name);
-                    _nextView = View.QuarterMenu;
-                    Console.WriteLine($"Quarter '{name}' is now open.");
-                }
-                else
-                {
-                    throw new NotFoundException("Quarter");
-                }
+                var quarterNames = quarters.Select(q => q.Name).ToArray();
+                int selectedIndex = ConsoleUIController.MenuHold(quarterNames);
+                var selectedQuarter = quarters[selectedIndex];
+
+                CurrentQuarter = selectedQuarter;
+                _nextView = View.QuarterMenu;
+                Console.WriteLine($"Quarter '{selectedQuarter.Name}' is now open.");
             }
         },
         {
@@ -93,26 +82,13 @@ public class DistrictMenuView : IMenuView
                     throw new NotFoundException("Quarters");
                 }
 
-                Console.WriteLine("Quarters:");
-                for (var i = 1; i <= quarters.Count; i++)
-                {
-                    Console.WriteLine($"{i}.{quarters[i - 1].Name}");
-                }
-                    
-                Console.Write("Enter a Quarter name: ");
-                var name = Console.ReadLine();
-                if (CurrentDistrict.Quarters.Any(d => d.Name == name))
-                {
-                    var quarter = CurrentDistrict.Quarters
-                        .FirstOrDefault(d => d.Name == name);
-                    CurrentDistrict.RemoveQuarter(quarter);
-                    CurrentDistrict = null;
-                    Console.WriteLine($"Quarter '{name}' is now removed.");
-                }
-                else
-                {
-                    throw new NotFoundException("Quarter");
-                }
+                var quarterNames = quarters.Select(q => q.Name).ToArray();
+                int selectedIndex = ConsoleUIController.MenuHold(quarterNames);
+                var selectedQuarter = quarters[selectedIndex];
+
+                CurrentDistrict.RemoveQuarter(selectedQuarter);
+                CurrentDistrict = null;
+                Console.WriteLine($"Quarter '{selectedQuarter.Name}' is now removed.");
             }
         },
         {
