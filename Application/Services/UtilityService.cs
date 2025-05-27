@@ -10,9 +10,7 @@ namespace Application.Services;
 
 public class UtilityService : IUtilityService
 {
-    // думаю, може отут не додавати до квартала, а просто повертати, але тоді треба окрема функція для додавання
-    // головна фіча сервісів - валідація, її можна перенести в Presentation, але там може губитись
-    public Utility Create(UtilityDto dto)
+    public Utility Create(UtilityDto? dto)
     {
         ValidateDtos.ValidateUtilityDto(dto);
 
@@ -21,19 +19,33 @@ public class UtilityService : IUtilityService
             .Build();
     }
 
-    public void AddToQuarter(QuarterComposite quarter, Utility model)
+    public void AddToQuarter(QuarterComposite? quarter, Utility? model)
     {
-        quarter.AddComponent(model);
+        if (model == null)
+        {
+            throw new ServiceException("Structure is null!");
+        }
+
+        if (quarter == null)
+        {
+            throw new ServiceException("Quarter is null!");
+        }
+
+        quarter.AddUtility(model);
     }
 
-    public void DeleteFromQuarter(QuarterComposite quarter, Utility model)
+    public void DeleteFromQuarter(QuarterComposite? quarter, Utility? model)
     {
-        quarter.RemoveComponent(model);
-    }
+        if (model == null)
+        {
+            throw new ServiceException("Structure is null!");
+        }
 
-    public void Update(QuarterComposite quarter, Utility model)
-    {
-        throw new NotImplementedException();
-        // я нінаю як ми вибиратимемо їх зі списку, може взагалі його прибрати
+        if (quarter == null)
+        {
+            throw new ServiceException("Quarter is null!");
+        }
+
+        quarter.RemoveUtility(model);
     }
 }

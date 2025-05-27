@@ -3,11 +3,11 @@ using Domain.Models;
 namespace Domain.Builders;
 
 /// <summary>
-/// Builder for Utility class, used to create utilities
+///     Builder for Utility class, used to create utilities
 /// </summary>
 public class UtilityBuilder
 {
-    private readonly Utility _utility = new Utility();
+    private readonly Utility _utility = new();
 
     public UtilityBuilder SetType(UtilityType type)
     {
@@ -40,7 +40,7 @@ public class UtilityBuilder
     }
 
     /// <summary>
-    /// Builds default utility
+    ///     Builds default utility
     /// </summary>
     /// <returns>Utility</returns>
     public Utility Build()

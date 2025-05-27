@@ -2,6 +2,7 @@
 using Domain.Builders;
 
 namespace Application.BuilderExtensions;
+
 public static class BuildingBuilderExtension
 {
     public static BuildingBuilder ApplyDto(this BuildingBuilder builder, BuildingDto dto)

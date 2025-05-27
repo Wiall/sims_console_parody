@@ -3,35 +3,41 @@ using Domain.Interfaces;
 namespace Domain.Composite;
 
 /// <summary>
-/// Composite class representing a city as a set of districts
+///     Composite class representing a city as a set of districts
 /// </summary>
 public class CityComposite(string name) : ICityComponent
 {
+    public List<DistrictComposite> Districts { get; set; } = new();
     public string Name { get; set; } = name;
-    private readonly List<ICityComponent> _districts = new();
 
-    public void AddDistrict(ICityComponent district) => _districts.Add(district);
-    public void RemoveDistrict(ICityComponent district) => _districts.Remove(district);
-
-    public decimal GetMaintenanceCost() =>
-        _districts.Sum(d => d.GetMaintenanceCost());
-
-    public void Display(int indent = 0)
+    public decimal GetMaintenanceCost()
     {
-        foreach (var district in _districts)
+        return Districts.Sum(d => d.GetMaintenanceCost());
+    }
+
+    public void Display(int depth = 0)
+    {
+        foreach (var district in Districts)
         {
-            district.Display(indent + 2);
+            district.Display(depth + 2);
             Console.WriteLine();
         }
     }
 
     public int GetTotalArea()
     {
-        int total = 0;
-        foreach (var district in _districts)
-        {
-            total += district.GetTotalArea();
-        }
+        var total = 0;
+        foreach (var district in Districts) total += district.GetTotalArea();
         return total;
+    }
+
+    public void AddDistrict(DistrictComposite district)
+    {
+        Districts.Add(district);
+    }
+
+    public void RemoveDistrict(DistrictComposite district)
+    {
+        Districts.Remove(district);
     }
 }

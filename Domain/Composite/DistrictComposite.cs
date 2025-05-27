@@ -4,30 +4,36 @@ namespace Domain.Composite;
 
 public class DistrictComposite(string name) : ICityComponent
 {
+    public List<QuarterComposite> Quarters { get; set; } = new();
     public string Name { get; set; } = name;
-    private readonly List<IInfrastructureComponent> _quarters = new();
 
-    public void AddQuarter(IInfrastructureComponent quarter) => _quarters.Add(quarter);
-    public void RemoveQuarter(IInfrastructureComponent quarter) => _quarters.Remove(quarter);
-
-    public decimal GetMaintenanceCost() =>
-        _quarters.Sum(q => q.GetMaintenanceCost());
+    public decimal GetMaintenanceCost()
+    {
+        return Quarters.Sum(q => q.GetMaintenanceCost());
+    }
 
     public int GetTotalArea()
     {
-        int total = 0;
-        foreach (var quarter in _quarters)
-        {
-            total += quarter.Area;
-        }
+        var total = 0;
+        foreach (var quarter in Quarters) total += quarter.Area;
 
         return total;
     }
 
-    public void Display(int indent = 0)
+    public void Display(int depth = 0)
     {
-        Console.WriteLine($"{new string(' ', indent)}+ District: {Name}");
-        foreach (var quarter in _quarters)
-            quarter.Display(indent + 2);
+        Console.WriteLine($"{new string(' ', depth)}+ District: {Name}");
+        foreach (var quarter in Quarters)
+            quarter.Display(depth + 2);
+    }
+
+    public void AddQuarter(QuarterComposite quarter)
+    {
+        Quarters.Add(quarter);
+    }
+
+    public void RemoveQuarter(QuarterComposite quarter)
+    {
+        Quarters.Remove(quarter);
     }
 }

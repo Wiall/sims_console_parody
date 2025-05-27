@@ -1,27 +1,48 @@
 ﻿using Application.Interfaces;
+using Application.Validation;
 using Domain.Composite;
 
 namespace Application.Services;
+
 public class QuarterService : IQuarterService
 {
-    public QuarterComposite Create(string name)
+    public QuarterComposite Create(string? name)
     {
+        if (name == null)
+        {
+            throw new ServiceException("Quarter name is null!");
+        }
+
         return new QuarterComposite(name);
     }
 
-    public void Add(DistrictComposite district, QuarterComposite quarter)
+    public void AddToDistrict(DistrictComposite? district, QuarterComposite? quarter)
     {
+        if (district == null)
+        {
+            throw new ServiceException("District is null!");
+        }
+
+        if (quarter == null)
+        {
+            throw new ServiceException("Quarter is null!");
+        }
+
         district.AddQuarter(quarter);
     }
 
-    public void Delete(DistrictComposite district, QuarterComposite quarter)
+    public void DeleteFromDistrict(DistrictComposite? district, QuarterComposite? quarter)
     {
-        district.RemoveQuarter(quarter);
-    }
+        if (district == null)
+        {
+            throw new ServiceException("District is null!");
+        }
 
-    public void Update(DistrictComposite district, QuarterComposite quarter)
-    {
-        throw new NotImplementedException();
-        // я нінаю як це рішать, може взагалі його прибрати
+        if (quarter == null)
+        {
+            throw new ServiceException("Quarter is null!");
+        }
+
+        district.RemoveQuarter(quarter);
     }
 }
