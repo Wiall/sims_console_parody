@@ -4,7 +4,7 @@ namespace Application.Dtos;
 
 public class RoadDto
 {
-    public string Name => $"{Type} Road";
+    public string? Name { get; set; }
     public RoadType? Type { get; set; }
     public int? Area { get; set; } = 1; // Площа(?) дороги (можна юзать як довжину)
     public bool? HasLights { get; set; } // Чи є вуличне освітлення

@@ -17,6 +17,8 @@ public interface IMenuView
 
     DistrictComposite? GetDistrict();
 
+    QuarterComposite? GetQuarter();
+
     View GetNextView();
 }
 
@@ -24,5 +26,6 @@ public enum View
 {
     MainMenu,
     CityControlsMenu,
-    DistrictMenuView
+    DistrictMenu,
+    QuarterMenu
 }

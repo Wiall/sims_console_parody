@@ -10,22 +10,26 @@ public class DistrictMenuView : IMenuView
     
     public static string? CurrentCityName { get; set; }
 
-    public DistrictMenuView(string? currentCityName, DistrictComposite? currentDistrict, CityController cityController)
+    public DistrictMenuView(string? currentCityName, DistrictComposite? currentDistrict, QuarterComposite? currentQuarter, CityController? cityController)
     {
         CurrentCityName = currentCityName;
         CurrentDistrict = currentDistrict;
+        CurrentQuarter = currentQuarter;
         _cityController = cityController;
     }
 
-    private static View _nextView = View.DistrictMenuView;
+    private static View _nextView = View.DistrictMenu;
     
     public static DistrictComposite? CurrentDistrict { get; set; }
+    
+    public static QuarterComposite? CurrentQuarter { get; set; }
+
 
     public static readonly string[] MenuOptions =
     {
-        "Create Quarter",
-        "Edit Quarter",
-        "Remove Quarter",
+        "Create a Quarter",
+        "Open a Quarter",
+        "Remove a Quarter",
         "Go to city"
     };
 
@@ -45,7 +49,37 @@ public class DistrictMenuView : IMenuView
             }
         },
         {
-            1, () => throw new NotImplementedException()
+            1, () =>
+            {
+                CurrentDistrict = CityStorage.GetCity(CurrentCityName).Districts
+                    .FirstOrDefault(d => d.Name == CurrentDistrict.Name);
+                var quarters = CurrentDistrict.Quarters;
+
+                if (quarters.Count == 0)
+                {
+                    throw new NotFoundException("Quarters");
+                }
+
+                Console.WriteLine("Quarters:");
+                for (var i = 1; i <= quarters.Count; i++)
+                {
+                    Console.WriteLine($"{i}.{quarters[i - 1].Name}");
+                }
+                    
+                Console.Write("Enter a Quarter name: ");
+                var name = Console.ReadLine();
+                if (CurrentDistrict.Quarters.Any(d => d.Name == name))
+                {
+                    CurrentQuarter = CurrentDistrict.Quarters
+                        .FirstOrDefault(d => d.Name == name);
+                    _nextView = View.QuarterMenu;
+                    Console.WriteLine($"Quarter '{name}' is now open.");
+                }
+                else
+                {
+                    throw new NotFoundException("Quarter");
+                }
+            }
         },
         {
             2, () =>
@@ -69,10 +103,10 @@ public class DistrictMenuView : IMenuView
                 var name = Console.ReadLine();
                 if (CurrentDistrict.Quarters.Any(d => d.Name == name))
                 {
-                    CurrentDistrict = null;
                     var quarter = CurrentDistrict.Quarters
                         .FirstOrDefault(d => d.Name == name);
                     CurrentDistrict.RemoveQuarter(quarter);
+                    CurrentDistrict = null;
                     Console.WriteLine($"Quarter '{name}' is now removed.");
                 }
                 else
@@ -103,5 +137,10 @@ public class DistrictMenuView : IMenuView
     public DistrictComposite? GetDistrict()
     {
         return CurrentDistrict;
+    }
+    
+    public QuarterComposite? GetQuarter()
+    {
+        return CurrentQuarter;
     }
 }

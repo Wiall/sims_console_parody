@@ -71,7 +71,7 @@ public class CityControlsMenuView : IMenuView
                 {
                     CurrentDistrict = CityStorage.GetCity(CurrentCityName)?.Districts
                         .FirstOrDefault(d => d.Name == name);
-                    _nextView = View.DistrictMenuView;
+                    _nextView = View.DistrictMenu;
                     Console.WriteLine($"District '{name}' is now open.");
                 }
                 else
@@ -149,5 +149,10 @@ public class CityControlsMenuView : IMenuView
     public DistrictComposite? GetDistrict()
     {
         return CurrentDistrict;
+    }
+    
+    public QuarterComposite? GetQuarter()
+    {
+        return null;
     }
 }

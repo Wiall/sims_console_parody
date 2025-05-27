@@ -107,4 +107,9 @@ public class MainMenuView : IMenuView
     {
         return null;
     }
+    
+    public QuarterComposite? GetQuarter()
+    {
+        return null;
+    }
 }

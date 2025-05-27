@@ -4,7 +4,7 @@ namespace Application.Dtos;
 
 public class UtilityDto
 {
-    public string Name => $"{Type} Utility";
+    public string? Name { get; set; }
     public UtilityType? Type { get; set; } // Тип, наприклад: "PowerPlant", "WaterTower"
     public double? ProductionCapacity { get; set; } = 0; // Обсяг, який виробляється
     public decimal? ConstructionCost { get; set; } // Вартість будівництва

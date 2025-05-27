@@ -4,12 +4,7 @@ namespace Application.Dtos;
 
 public class BuildingDto
 {
-    public string Name
-    {
-        get => $"{Type} Building";
-        set => throw new NotImplementedException();
-    }
-
+    public string? Name { get; set; }
     public BuildingType? Type { get; set; } // Тип будівлі по типу "Школа" чи "Офіс"
     public int? Floors { get; set; } = 1; // Кількість поверхів
     public int? Capacity { get; set; } // Місткість будівлі (люди)

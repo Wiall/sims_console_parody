@@ -35,9 +35,10 @@ internal static class Program
         var quarterService = serviceProvider.GetRequiredService<IQuarterService>();
         var districtService = serviceProvider.GetRequiredService<IDistrictService>();
 
-        var cityController = new CityController(buildingService, districtService, quarterService);
+        var cityController = new CityController(buildingService, districtService, quarterService, roadService, utilityService);
         string? currentCityName = null;
         DistrictComposite? currentDistrict = null;
+        QuarterComposite? currentQuarter = null;
         var nextView = View.MainMenu;
         IMenuView view;
 
@@ -64,15 +65,28 @@ internal static class Program
                         currentDistrict = view.GetDistrict();
                         nextView = view.GetNextView();
                         break;
-                    case View.DistrictMenuView:
+                    case View.DistrictMenu:
                         view = new DistrictMenuView(currentCityName,
                             CityStorage.GetCity(currentCityName).Districts.FirstOrDefault(currentDistrict),
-                            cityController);
+                            currentQuarter, cityController);
                         CityStorage.LoadAll();
                         ConsoleUIController.RunMenu(DistrictMenuView.MenuActions, DistrictMenuView.MenuOptions);
                         CityStorage.SaveAll();
                         currentCityName = view.GetName();
                         currentDistrict = view.GetDistrict();
+                        currentQuarter = view.GetQuarter();
+                        nextView = view.GetNextView();
+                        break;
+                    case View.QuarterMenu:
+                        view = new QuarterMenuView(currentCityName,
+                            CityStorage.GetCity(currentCityName).Districts.FirstOrDefault(currentDistrict),
+                            currentQuarter, cityController);
+                        CityStorage.LoadAll();
+                        ConsoleUIController.RunMenu(QuarterMenuView.MenuActions, QuarterMenuView.MenuOptions);
+                        CityStorage.SaveAll();
+                        currentCityName = view.GetName();
+                        currentDistrict = view.GetDistrict();
+                        currentQuarter = view.GetQuarter();
                         nextView = view.GetNextView();
                         break;
                     default: break;
