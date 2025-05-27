@@ -11,6 +11,7 @@ public static class CityStorage
 
     public static IReadOnlyList<CityComposite> Cities => _cities.AsReadOnly();
 
+
     public static void AddCity(CityComposite city)
     {
         _cities.Add(city);

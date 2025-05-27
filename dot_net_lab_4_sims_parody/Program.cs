@@ -71,6 +71,10 @@ internal static class Program
                             currentQuarter, cityController);
                         CityStorage.LoadAll();
                         ConsoleUIController.RunMenu(DistrictMenuView.MenuActions, DistrictMenuView.MenuOptions);
+
+                        Console.WriteLine($"Квартал: {CityStorage.GetCity(currentCityName)?.Districts[0].Quarters[0].Name}");
+                        Console.WriteLine($"Кількість будівель: {CityStorage.GetCity(currentCityName)?.Districts[0].Quarters[0].Buildings.Count}");
+                        Console.ReadKey();
                         CityStorage.SaveAll();
                         currentCityName = view.GetName();
                         currentDistrict = view.GetDistrict();

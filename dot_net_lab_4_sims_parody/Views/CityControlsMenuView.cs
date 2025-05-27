@@ -52,65 +52,45 @@ public class CityControlsMenuView : IMenuView
         {
             1, () =>
             {
-                var districts = CityStorage.GetCity(CurrentCityName).Districts;
+                var city = CityStorage.GetCity(CurrentCityName);
+                var districts = city.Districts;
 
                 if (districts.Count == 0)
                 {
                     throw new NotFoundException("District");
                 }
 
-                Console.WriteLine("Districts:");
-                for (var i = 1; i <= districts.Count; i++)
-                {
-                    Console.WriteLine($"{i}.{districts[i - 1].Name}");
-                }
-                    
-                Console.Write("Enter a District name: ");
-                var name = Console.ReadLine();
-                if (CityStorage.GetCity(CurrentCityName).Districts.Any(d => d.Name == name))
-                {
-                    CurrentDistrict = CityStorage.GetCity(CurrentCityName)?.Districts
-                        .FirstOrDefault(d => d.Name == name);
-                    _nextView = View.DistrictMenu;
-                    Console.WriteLine($"District '{name}' is now open.");
-                }
-                else
-                {
-                    throw new NotFoundException("District");
-                }
+                var districtNames = districts.Select(d => d.Name).ToArray();
+                int selectedIndex = ConsoleUIController.MenuHold(districtNames);
+                var selectedDistrict = districts[selectedIndex];
+
+                CurrentDistrict = selectedDistrict;
+                _nextView = View.DistrictMenu;
+                Console.WriteLine($"District '{selectedDistrict.Name}' is now open.");
             }
-        },
+        }
+        ,
         {
             2, () =>
             {
-                var districts = CityStorage.GetCity(CurrentCityName).Districts;
+                var city = CityStorage.GetCity(CurrentCityName);
+                var districts = city.Districts;
 
                 if (districts.Count == 0)
                 {
                     throw new NotFoundException("District");
                 }
 
-                Console.WriteLine("Districts:");
-                for (var i = 1; i <= districts.Count; i++)
-                {
-                    Console.WriteLine($"{i}.{districts[i - 1].Name}");
-                }
-                    
-                Console.Write("Enter a District name: ");
-                var name = Console.ReadLine();
-                if (CityStorage.GetCity(CurrentCityName).Districts.Any(d => d.Name == name))
-                {
-                    CurrentDistrict = null;
-                    var district = CityStorage.GetCity(CurrentCityName)?.Districts
-                        .FirstOrDefault(d => d.Name == name);
-                    var city = CityStorage.GetCity(CurrentCityName);
-                    city.RemoveDistrict(district);
-                    Console.WriteLine($"District '{name}' is now removed.");
-                }
-                else
-                {
-                    throw new NotFoundException("District");
-                }
+                var districtNames = districts.Select(d => d.Name).ToArray();
+                int selectedIndex = ConsoleUIController.MenuHold(districtNames);
+                var selectedDistrict = districts[selectedIndex];
+
+                city.RemoveDistrict(selectedDistrict);
+                CurrentDistrict = null;
+
+                Console.WriteLine($"District '{selectedDistrict.Name}' is now removed.");
+                Console.WriteLine("\nPress any button to continue...");
+                Console.ReadKey();
             }
         },
         {

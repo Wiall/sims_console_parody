@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "MCRcHbpr0fKqRdxIojgHM8HkNZhwWV84qUSO3/H3GOpX8pRZghVjlF++KYe9JFaGuPDIKcQTSgeYgxPcOf3F+w==",
+  "dgSpecHash": "tV/WdGodeduk1p4HbtR+0zA2K7mjriUEIzvLlMLfK+5rcyc/HvpaN3mZYMgUTCVOXdpYB0SbmNbHCKjvocpDLA==",
   "success": true,
-  "projectFilePath": "E:\\.net\\lab4\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj",
+  "projectFilePath": "D:\\RiderProjects\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\makcp\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.5\\microsoft.extensions.dependencyinjection.9.0.5.nupkg.sha512",
-    "C:\\Users\\makcp\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.5\\microsoft.extensions.dependencyinjection.abstractions.9.0.5.nupkg.sha512"
+    "C:\\Users\\Анастасия\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.5\\microsoft.extensions.dependencyinjection.9.0.5.nupkg.sha512",
+    "C:\\Users\\Анастасия\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.5\\microsoft.extensions.dependencyinjection.abstractions.9.0.5.nupkg.sha512"
   ],
   "logs": []
 }

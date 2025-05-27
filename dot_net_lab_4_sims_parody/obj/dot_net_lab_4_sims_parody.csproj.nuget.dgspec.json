@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\.net\\lab4\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj": {}
+    "D:\\RiderProjects\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj": {}
   },
   "projects": {
-    "E:\\.net\\lab4\\sims_console_parody\\Application\\Application.csproj": {
+    "D:\\RiderProjects\\sims_console_parody\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\.net\\lab4\\sims_console_parody\\Application\\Application.csproj",
+        "projectUniqueName": "D:\\RiderProjects\\sims_console_parody\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "E:\\.net\\lab4\\sims_console_parody\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\makcp\\.nuget\\packages\\",
-        "outputPath": "E:\\.net\\lab4\\sims_console_parody\\Application\\obj\\",
+        "projectPath": "D:\\RiderProjects\\sims_console_parody\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\Анастасия\\.nuget\\packages\\",
+        "outputPath": "D:\\RiderProjects\\sims_console_parody\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\makcp\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Анастасия\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj": {
-                "projectPath": "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj"
+              "D:\\RiderProjects\\sims_console_parody\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\RiderProjects\\sims_console_parody\\Domain\\Domain.csproj"
               }
             }
           }
@@ -57,21 +57,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\makcp\\.dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\Анастасия\\.dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj": {
+    "D:\\RiderProjects\\sims_console_parody\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\RiderProjects\\sims_console_parody\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\makcp\\.nuget\\packages\\",
-        "outputPath": "E:\\.net\\lab4\\sims_console_parody\\Domain\\obj\\",
+        "projectPath": "D:\\RiderProjects\\sims_console_parody\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Анастасия\\.nuget\\packages\\",
+        "outputPath": "D:\\RiderProjects\\sims_console_parody\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\makcp\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Анастасия\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -110,21 +110,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\makcp\\.dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\Анастасия\\.dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\.net\\lab4\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj": {
+    "D:\\RiderProjects\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\.net\\lab4\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj",
+        "projectUniqueName": "D:\\RiderProjects\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj",
         "projectName": "dot_net_lab_4_sims_parody",
-        "projectPath": "E:\\.net\\lab4\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj",
-        "packagesPath": "C:\\Users\\makcp\\.nuget\\packages\\",
-        "outputPath": "E:\\.net\\lab4\\sims_console_parody\\dot_net_lab_4_sims_parody\\obj\\",
+        "projectPath": "D:\\RiderProjects\\sims_console_parody\\dot_net_lab_4_sims_parody\\dot_net_lab_4_sims_parody.csproj",
+        "packagesPath": "C:\\Users\\Анастасия\\.nuget\\packages\\",
+        "outputPath": "D:\\RiderProjects\\sims_console_parody\\dot_net_lab_4_sims_parody\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\makcp\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Анастасия\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -136,11 +136,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\.net\\lab4\\sims_console_parody\\Application\\Application.csproj": {
-                "projectPath": "E:\\.net\\lab4\\sims_console_parody\\Application\\Application.csproj"
+              "D:\\RiderProjects\\sims_console_parody\\Application\\Application.csproj": {
+                "projectPath": "D:\\RiderProjects\\sims_console_parody\\Application\\Application.csproj"
               },
-              "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj": {
-                "projectPath": "E:\\.net\\lab4\\sims_console_parody\\Domain\\Domain.csproj"
+              "D:\\RiderProjects\\sims_console_parody\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\RiderProjects\\sims_console_parody\\Domain\\Domain.csproj"
               }
             }
           }
@@ -176,7 +176,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\makcp\\.dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\Анастасия\\.dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

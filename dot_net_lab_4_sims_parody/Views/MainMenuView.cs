@@ -1,6 +1,7 @@
 ﻿using Application.Validation;
 using Domain.Composite;
 using dot_net_lab_4_sims_parody.Presentation;
+using dot_net_lab_4_sims_parody.UIHolding;
 
 namespace dot_net_lab_4_sims_parody.Views;
 
@@ -53,43 +54,37 @@ public class MainMenuView : IMenuView
                     throw new NotFoundException("City");
                 }
 
-                Console.WriteLine("Cities:");
-                for (var i = 1; i <= cities.Count; i++)
-                {
-                    Console.WriteLine($"{i}.{cities[i - 1].Name}");
-                }
-                
-                Console.Write("Enter city name to open: ");
-                var name = Console.ReadLine();
-                if (CityStorage.GetCity(name) != null)
-                {
-                    CurrentCityName = name;
-                    _nextView = View.CityControlsMenu;
-                    Console.WriteLine($"City '{name}' is now open.");
-                }
-                else
-                {
-                    throw new NotFoundException("City");
-                }
+                var cityNames = cities.Select(c => c.Name).ToArray();
+                int selectedIndex = ConsoleUIController.MenuHold(cityNames);
+                var selectedCityName = cityNames[selectedIndex];
+
+                CurrentCityName = selectedCityName;
+                _nextView = View.CityControlsMenu;
+                Console.WriteLine($"City '{selectedCityName}' is now open.");
             }
         },
         {
             2, () =>
             {
-                Console.Write("Enter city name to delete: ");
-                var name = Console.ReadLine();
-                if (CityStorage.GetCity(name) != null)
-                {
-                    CityStorage.RemoveCity(name);
-                    if (CurrentCityName == name) CurrentCityName = null;
-                    Console.WriteLine($"City '{name}' deleted.");
-                }
-                else
+                var cities = CityStorage.Cities;
+
+                if (cities.Count == 0)
                 {
                     throw new NotFoundException("City");
                 }
+
+                var cityNames = cities.Select(c => c.Name).ToArray();
+                int selectedIndex = ConsoleUIController.MenuHold(cityNames);
+                var selectedCityName = cityNames[selectedIndex];
+
+                CityStorage.RemoveCity(selectedCityName);
+                if (CurrentCityName == selectedCityName) CurrentCityName = null;
+                Console.WriteLine($"City '{selectedCityName}' deleted.");
+                Console.WriteLine("\nPress any button to continue...");
+                Console.ReadKey();
             }
         },
+
         { 3, () => Environment.Exit(0) }
     };
 
